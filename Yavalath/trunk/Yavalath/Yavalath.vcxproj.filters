@@ -47,9 +47,6 @@
     <ClInclude Include="JogoIA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hexagono.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
