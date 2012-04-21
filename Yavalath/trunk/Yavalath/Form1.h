@@ -79,10 +79,11 @@ namespace Yavalath {
 			this->pictureBox1->Size = System::Drawing::Size(563, 496);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
 			// 
 			// Pos1
 			// 
-			this->Pos1->BackColor = System::Drawing::Color::Gold;
+			this->Pos1->BackColor = System::Drawing::Color::Yellow;
 			this->Pos1->Location = System::Drawing::Point(140, 32);
 			this->Pos1->Name = L"Pos1";
 			this->Pos1->Size = System::Drawing::Size(36, 30);
@@ -91,7 +92,7 @@ namespace Yavalath {
 			// 
 			// Pos2
 			// 
-			this->Pos2->BackColor = System::Drawing::Color::Gold;
+			this->Pos2->BackColor = System::Drawing::Color::Yellow;
 			this->Pos2->Location = System::Drawing::Point(201, 32);
 			this->Pos2->Name = L"Pos2";
 			this->Pos2->Size = System::Drawing::Size(36, 30);
@@ -118,11 +119,16 @@ namespace Yavalath {
 	
 	
 	private: System::Void Pos1_Click(System::Object^  sender, System::EventArgs^  e) {
-			 Pos1->BackColor = System::Drawing::Color::Black;	 
+			 //Pos1->BackColor = Color::Black;
+				 Graphics^ g = CreateGraphics();
+				JogoIA jogo;
+				jogo.DesenhaPeca(g,Color::Black, 20, 20);
 			 }
 	private: System::Void Pos2_Click(System::Object^  sender, System::EventArgs^  e) {
-			 Pos2->BackColor = System::Drawing::Color::White;	 
+			 Pos2->BackColor = Color::White;	 
 			 }
-	};
+	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
 
