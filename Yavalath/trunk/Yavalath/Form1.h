@@ -1,4 +1,5 @@
 #pragma once
+#include "JogoIA.h"
 
 namespace Yavalath {
 
@@ -21,6 +22,7 @@ namespace Yavalath {
 			//
 			//TODO: Add the constructor code here
 			//
+						
 		}
 
 	protected:
