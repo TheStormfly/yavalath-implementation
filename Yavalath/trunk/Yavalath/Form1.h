@@ -106,6 +106,8 @@ namespace Yavalath {
 			this->Controls->Add(this->Pos2);
 			this->Controls->Add(this->Pos1);
 			this->Controls->Add(this->pictureBox1);
+			this->MaximumSize = System::Drawing::Size(577, 554);
+			this->MinimumSize = System::Drawing::Size(577, 554);
 			this->Name = L"Form1";
 			this->Text = L"Yavalath";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
