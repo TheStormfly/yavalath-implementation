@@ -26,18 +26,7 @@ int Turno=1; //marca quem esta jogando,quem começa o jogo são as brancas, isso p
 	 }
  }
 
-void JogoIA::DesenhaPeca(Graphics^ g, Color cor, float x, float y)
-{			
-		    // Create a local version of the graphics object for the PictureBox.
-      //Graphics^ g = CreateGraphics();
-	/*Pen^ redPen = gcnew Pen(Color::Red);
-	Point startPoint = Point(20, 50);
-	Point endPoint = Point(200, 300);
-	g->DrawLine( redPen, startPoint, endPoint);*/
 
-
-    
-}
 
 //faz a jogada, retorna 1 para jogada efetuada e 0 para jogada n efetuada, recomendado colocar a var Turno no parametro cor
 //Exemplo de chamada: FazJogada(Turno,44);
