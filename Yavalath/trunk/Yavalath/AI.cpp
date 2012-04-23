@@ -1,7 +1,5 @@
-#include "StdAfx.h"
-#include "AI.h"
-#include <stdio.h>
-using namespace System::Drawing;
+#pragma once
+#include "stdafx.h"
 
 //***IMPORTANTE
 //cor preto = 2
@@ -26,6 +24,10 @@ int Turno=1; //marca quem esta jogando,quem começa o jogo são as brancas, isso p
 	 }
  }
 
+ bool AI::Play(Board board, short int color, short int position)
+ {
+	 return false;
+ }
 
 
 //faz a jogada, retorna 1 para jogada efetuada e 0 para jogada n efetuada, recomendado colocar a var Turno no parametro cor

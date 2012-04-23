@@ -4,3 +4,14 @@
 #pragma once
 
 // TODO: reference additional headers your program requires here
+using namespace System;
+using namespace System::ComponentModel;
+using namespace System::Collections;
+using namespace System::Windows::Forms;
+using namespace System::Drawing;
+
+using namespace std;
+
+#include <iostream>
+#include "Board.h"
+#include "AI.h"

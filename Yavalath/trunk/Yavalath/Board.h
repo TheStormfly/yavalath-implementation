@@ -1,9 +1,10 @@
+#pragma once
 
 class Board
 {
 	private:
+		unsigned char board[61];
 
-	//Constructor
 	public:
-		Board(void);
+		void Initialize();
 };
