@@ -73,17 +73,17 @@ namespace Yavalath {
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"panel1.BackgroundImage")));
 			this->panel1->Location = System::Drawing::Point(-1, 0);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(563, 517);
+			this->panel1->Size = System::Drawing::Size(563, 504);
 			this->panel1->TabIndex = 0;
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(561, 516);
+			this->ClientSize = System::Drawing::Size(561, 495);
 			this->Controls->Add(this->panel1);
-			this->MaximumSize = System::Drawing::Size(577, 554);
-			this->MinimumSize = System::Drawing::Size(577, 554);
+			this->MaximumSize = System::Drawing::Size(577, 533);
+			this->MinimumSize = System::Drawing::Size(577, 533);
 			this->Name = L"Form1";
 			this->Text = L"Yavalath";
 			this->ResumeLayout(false);
