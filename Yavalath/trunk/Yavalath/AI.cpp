@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "JogoIA.h"
+#include "AI.h"
 #include <stdio.h>
 using namespace System::Drawing;
 

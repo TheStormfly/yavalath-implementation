@@ -1,6 +1,6 @@
 using namespace System::Drawing;
 
-class JogoIA
+class IA
 {
 
 };
