@@ -36,7 +36,9 @@ namespace Yavalath {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Panel^  panel1;
+	protected: 
+
 
 
 
@@ -63,39 +65,35 @@ namespace Yavalath {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->SuspendLayout();
 			// 
-			// pictureBox1
+			// panel1
 			// 
-			this->pictureBox1->BackColor = System::Drawing::Color::Yellow;
-			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox1.BackgroundImage")));
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(0, 8);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(563, 496);
-			this->pictureBox1->TabIndex = 0;
-			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
+			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"panel1.BackgroundImage")));
+			this->panel1->Location = System::Drawing::Point(-1, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(563, 517);
+			this->panel1->TabIndex = 0;
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(561, 516);
-			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->panel1);
 			this->MaximumSize = System::Drawing::Size(577, 554);
 			this->MinimumSize = System::Drawing::Size(577, 554);
 			this->Name = L"Form1";
 			this->Text = L"Yavalath";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	
 
-};
+	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+			 }
+	};
 }
 
