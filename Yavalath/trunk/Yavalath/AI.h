@@ -1,6 +1,7 @@
-using namespace System::Drawing;
 
-class IA
+
+class AI
 {
-
+	public:
+		bool Play(Board board, short int color, short int position);
 };

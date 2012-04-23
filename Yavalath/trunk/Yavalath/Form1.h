@@ -1,26 +1,24 @@
+#include "stdafx.h"
 #pragma once
-#include "AI.h"
 
 namespace Yavalath {
-
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
 
 	/// <summary>
 	/// Summary for Form1
 	/// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
+	private:
+		Board* board;
+
 	public:
 		Form1(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			board = new Board();
+			board->Initialize();
 			//
 						
 		}
@@ -75,6 +73,7 @@ namespace Yavalath {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(563, 504);
 			this->panel1->TabIndex = 0;
+			this->panel1->Click += gcnew System::EventHandler(this, &Form1::panel1_Click);
 			// 
 			// Form1
 			// 
@@ -91,8 +90,9 @@ namespace Yavalath {
 		}
 #pragma endregion
 	
+	private: System::Void panel1_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
 
-	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 	};
 }
