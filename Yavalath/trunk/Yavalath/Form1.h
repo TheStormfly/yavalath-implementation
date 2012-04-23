@@ -1,5 +1,5 @@
 #pragma once
-#include "JogoIA.h"
+#include "AI.h"
 
 namespace Yavalath {
 
