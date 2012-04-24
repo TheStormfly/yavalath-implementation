@@ -73,7 +73,7 @@ namespace Yavalath {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(563, 504);
 			this->panel1->TabIndex = 0;
-			this->panel1->Click += gcnew System::EventHandler(this, &Form1::panel1_Click);
+			this->panel1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::panel1_MouseClick);
 			// 
 			// Form1
 			// 
@@ -89,10 +89,17 @@ namespace Yavalath {
 
 		}
 #pragma endregion
-	
-	private: System::Void panel1_Click(System::Object^  sender, System::EventArgs^  e) 
-			 {
 
+	private: System::Void panel1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+			 {
+				 System::Drawing::SolidBrush^ myBrush;
+				 
+				 if (true) // marca brancas
+					myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+				 else
+					myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
+
+					this->panel1->CreateGraphics()->FillEllipse(myBrush, e->X - 20, e->Y - 20, 45, 45);
 			 }
 	};
 }
