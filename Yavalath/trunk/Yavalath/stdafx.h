@@ -13,9 +13,10 @@ using namespace System::Drawing;
 using namespace std;
 
 #include <iostream>
+#include <math.h>
+#include <vector>
+
+#include "Hexagon.h"
 #include "Board.h"
 #include "AI.h"
-#include "Point.h"
-#include "Hexagon.h"
-
-
+#include "Form1.h"

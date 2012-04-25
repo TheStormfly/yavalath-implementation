@@ -1,5 +1,5 @@
-#include "stdafx.h"
 #pragma once
+#include "stdafx.h"
 
 namespace Yavalath {
 
@@ -18,8 +18,7 @@ namespace Yavalath {
 			//
 			//TODO: Add the constructor code here
 			board = new Board();
-			board->Initialize();
-			//
+			
 						
 		}
 
@@ -82,15 +81,21 @@ namespace Yavalath {
 
 	private: System::Void panel1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
-				// System::Drawing::SolidBrush^ myBrush;
-				// 
-				// if (true) // marca brancas
-				//	myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
-				// else
-				//	myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
+				 Ponto p;
+				 
+				 if(this->board->hexagonoClicadoEhValido(e->X, e->Y, &p))
+				 {
+					System::Drawing::SolidBrush^ myBrush;
+				 
+					if (true) // marca brancas
+						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+					else
+						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 
-				//	this->panel1->CreateGraphics()->FillEllipse(myBrush, e->X - 20, e->Y - 20, 45, 45);
+					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+				 }
 			 }
+
 	private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 			 }
 	};
