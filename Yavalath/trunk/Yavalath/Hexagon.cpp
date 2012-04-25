@@ -9,6 +9,7 @@ Hexagon::Hexagon(int x, int y)
 	InitializeVertexs();
 }
 
+
 Hexagon::~Hexagon()
 {
 }
