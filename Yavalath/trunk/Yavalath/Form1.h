@@ -95,9 +95,6 @@ namespace Yavalath {
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 				 }
 			 }
-
-	private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-			 }
 	};
 }
 
