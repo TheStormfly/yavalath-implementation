@@ -15,3 +15,7 @@ using namespace std;
 #include <iostream>
 #include "Board.h"
 #include "AI.h"
+#include "Point.h"
+#include "Hexagon.h"
+
+
