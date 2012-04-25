@@ -3,8 +3,13 @@
 class Board
 {
 	private:
+		vector<Hexagon*> hexagonVector;
 		unsigned char board[61];
+		void Initialize();
 
 	public:
-		void Initialize();
+		Board(void);
+		~Board(void);
+
+		bool hexagonoClicadoEhValido(int x, int y, Ponto *p);
 };

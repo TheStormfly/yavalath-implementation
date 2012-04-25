@@ -90,7 +90,6 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Hexagon.cpp" />
-    <ClCompile Include="Point.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -104,7 +103,6 @@
     </ClInclude>
     <ClInclude Include="AI.h" />
     <ClInclude Include="Hexagon.h" />
-    <ClInclude Include="Point.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
