@@ -73,6 +73,7 @@ namespace Yavalath {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(563, 504);
 			this->panel1->TabIndex = 0;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::panel1_Paint);
 			this->panel1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::panel1_MouseClick);
 			// 
 			// Form1
@@ -100,6 +101,8 @@ namespace Yavalath {
 					myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, e->X - 20, e->Y - 20, 45, 45);
+			 }
+	private: System::Void panel1_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 			 }
 	};
 }
