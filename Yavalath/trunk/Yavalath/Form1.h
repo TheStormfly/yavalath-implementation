@@ -18,7 +18,7 @@ namespace Yavalath {
 			//
 			//TODO: Add the constructor code here
 			board = new Board();
-			
+			board->SetTurn(2);
 						
 		}
 
@@ -87,10 +87,16 @@ namespace Yavalath {
 				 {
 					System::Drawing::SolidBrush^ myBrush;
 				 
-					if (true) // marca brancas
+					if (board->GetTurn()==1) // marca brancas
+					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+						board->NextTurn();
+					}
 					else
+					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
+						board->NextTurn();
+					}
 
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 				 }
