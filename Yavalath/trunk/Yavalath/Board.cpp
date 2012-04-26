@@ -116,10 +116,12 @@ bool Board::hexagonoClicadoEhValido(int x, int y, Ponto *p)
 
 void Board::NextTurn(void)
 {
-	if(Turn==1)
-	Turn=2;
-	else
+	if(Turn==2){
 	Turn=1;
+	}
+	else{
+	Turn=2;
+	}
 }
 
 int Board::GetTurn()
