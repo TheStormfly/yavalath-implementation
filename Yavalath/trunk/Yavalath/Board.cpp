@@ -1,8 +1,15 @@
 #include "stdafx.h"
+//***IMPORTANTE
+//cor preto = 2
+//cor branca = 1
+//cor amarela = 0
+
+
 
 Board::Board(void)
 {
 	Initialize();
+	
 }
 
 Board::~Board()
@@ -10,6 +17,9 @@ Board::~Board()
 	for(int i=0; i<61; i++)
 		delete hexagonVector[i];
 }
+
+
+
 
 void Board::Initialize()
 {
@@ -102,4 +112,23 @@ bool Board::hexagonoClicadoEhValido(int x, int y, Ponto *p)
 	}
 
 	return false;
+}
+
+void Board::NextTurn(void)
+{
+	if(Turn==1)
+	Turn=2;
+	else
+	Turn=1;
+}
+
+int Board::GetTurn()
+{
+	return(Turn);
+}
+
+void Board::SetTurn(int color)
+{
+	if(color==1 || color==2)
+	Turn=color;
 }
