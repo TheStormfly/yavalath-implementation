@@ -11,8 +11,8 @@ class Board
 	public:
 		Board(void);
 		~Board(void);
-		int GetTurn();
-		void NextTurn();
+		int Board::GetTurn();
+		void Board::NextTurn();
 		void Board::SetTurn(int color);
 
 		bool hexagonoClicadoEhValido(int x, int y, Ponto *p);
