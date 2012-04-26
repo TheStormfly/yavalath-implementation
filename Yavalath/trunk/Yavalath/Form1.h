@@ -179,7 +179,7 @@ namespace Yavalath {
 		}
 #pragma endregion
 		
-
+	//evento quando alguma posição eh clicada
 	private: System::Void panel1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
 				 Ponto p;
@@ -188,13 +188,13 @@ namespace Yavalath {
 				 {
 					System::Drawing::SolidBrush^ myBrush;
 				 
-					if (board->GetTurn()==2) // marca pretas
+					if (board->GetTurn()==2) //se o turno é das pretas
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 						board->NextTurn();
 						this->Turno->Text = L"Turn: White";//Muda de turno
 					}
-					else // marca brancas
+					else // se o turno é das brancas
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
 						board->NextTurn();

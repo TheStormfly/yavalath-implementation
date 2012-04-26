@@ -134,3 +134,13 @@ void Board::SetTurn(int color)
 	if(color==1 || color==2)
 	Turn=color;
 }
+
+bool Board::EmptyPosition(int pos)
+{
+	if(pos<=61 && pos>=0)//se ta na posição valida
+	{
+		if(board[pos]=0)//se ta vazio
+			return(true);
+	}
+	return(false);
+}
