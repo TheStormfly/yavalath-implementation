@@ -25,6 +25,8 @@ Board::~Board()
 
 void Board::Initialize()
 {
+	this->newgame = false;// variável de controle de newgame
+
 	for(int i=0; i<61;i++)
 		board[i]='0';
 
