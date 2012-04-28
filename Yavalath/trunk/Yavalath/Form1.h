@@ -195,6 +195,9 @@ namespace Yavalath {
 	//evento quando alguma posição eh clicada
 	private: System::Void panel1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
+				 if(this->board->newgame == false)
+					 return;
+
 				 Ponto p;
 				 
 				 if(this->board->hexagonoClicadoEhValido(e->X, e->Y, &p))
@@ -231,16 +234,24 @@ namespace Yavalath {
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 				 }
 			 }
-	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
+			 {
 			 }
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
 				 //recomeça jogo
+				 //if(this->whiteone->Checked)
+					 if(this->selectComputer->SelectedItem == 1)
+						 this->board->newgame = true;
+				 
+				
 
 
 
 
 			 }
-private: System::Void whiteone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void whiteone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+		 {
 		 }
 
 
