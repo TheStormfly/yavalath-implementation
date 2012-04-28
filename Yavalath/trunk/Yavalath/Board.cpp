@@ -347,343 +347,88 @@ char Board::horizontal()
 
 char Board::diagonal1() //    "/"
 {
-	char resultados[9];
-	resultados[0]=AvaliaDiagonal(0);
-	resultados[1]=AvaliaDiagonal(1);
-	resultados[2]=AvaliaDiagonal(2);
-	resultados[3]=AvaliaDiagonal(3);
-	resultados[4]=AvaliaDiagonal(4);
-	resultados[5]=AvaliaDiagonal(10);
-	resultados[6]=AvaliaDiagonal(17);
-	resultados[7]=AvaliaDiagonal(25);
-	resultados[8]=AvaliaDiagonal(34);
+	char resultados[18];
+	for(int i=0;i<9;i++){//brancas
+		resultados[0]=AvaliaDiagonal(0,1);
+		resultados[1]=AvaliaDiagonal(1,1);
+		resultados[2]=AvaliaDiagonal(2,1);
+		resultados[3]=AvaliaDiagonal(3,1);
+		resultados[4]=AvaliaDiagonal(4,1);
+		resultados[5]=AvaliaDiagonal(1,1);
+		resultados[6]=AvaliaDiagonal(17,1);
+		resultados[7]=AvaliaDiagonal(25,1);
+		resultados[8]=AvaliaDiagonal(34,1);
+	}
+	for(int i=0;i<9;i++){//pretas
+		resultados[9]=AvaliaDiagonal(0,2);
+		resultados[10]=AvaliaDiagonal(1,2);
+		resultados[11]=AvaliaDiagonal(2,2);
+		resultados[12]=AvaliaDiagonal(3,2);
+		resultados[13]=AvaliaDiagonal(4,2);
+		resultados[14]=AvaliaDiagonal(1,2);
+		resultados[15]=AvaliaDiagonal(17,2);
+		resultados[16]=AvaliaDiagonal(25,2);
+		resultados[17]=AvaliaDiagonal(34,2);
+	}
 
-
-
-	for(int i=0;i<9;i++)
+	for(int i=0;i<18;i++)
 	{
 		if(resultados[i]!='0')
 			return(resultados[i]);
 	}
 			
-	//int avaliando='1';
-	//int salto[4];
-	//int listaPulo[8]={5,6,7,8,8,7,6,5};
-	//
-	////verifica primeira diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int aumentar=5;
-	//	int pulo=0;
-	//	for(int i=0; i<=2;i++)
-	//	{
-	//		if(this->board[pulo]==avaliando && this->board[pulo+aumentar]==avaliando && this->board[pulo+aumentar+aumentar+1]==avaliando)
-	//		{
-	//			if((i!=2) && this->board[pulo+aumentar+aumentar+1+aumentar+2]==avaliando)//ganhou
-	//				return(avaliando);
-	//			else//oponente ganhou
-	//				return(Oponente(avaliando));
-	//		}
-	//		else{}//nothing
-	//		
-	//		pulo=aumentar+pulo;
-	//		aumentar++;
-
-	//	}
-	//	avaliando='2';
-	//}
-
-
-	////verifica segunda diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int aumentar=5;
-	//	int pulo=1;
-	//	for(int i=0; i<=3;i++)
-	//	{
-	//			salto[0]=pulo;
-	//			salto[1]=salto[0]+aumentar;
-	//			salto[2]=salto[1]+aumentar+1;
-	//			salto[3]=salto[2]+aumentar+2;
-	//			
-	//			//correção para saltos depois do meio
-	//			for(int k=0;k<4;k++)
-	//			{
-	//				if(salto[k]>=35 && salto[k]<=42)
-	//				salto[k]=salto[k]-1;
-	//				else if(salto[k]>=43 && salto[k]<=49)
-	//				salto[k]=salto[k]-2;
-	//				else if(salto[k]>=50 && salto[k]<=55)
-	//				salto[k]=salto[k]-3;
-	//				else if(salto[k]>=56 && salto[k]<=60)
-	//				salto[k]=salto[k]-4;
-	//			}
-	//		
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=3) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		
-	//		
-	//		pulo=aumentar+pulo;
-	//		aumentar++;
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica terceira diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=2;
-	//			
-	//	for(int i=0; i<=4;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=4) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica quarta diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=3;
-	//			
-	//	for(int i=0; i<=5;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=5) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica quinta diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=4;
-	//			
-	//	for(int i=0; i<=6;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=6) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica sexta diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=10;
-	//			
-	//	for(int i=1; i<=6;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=6) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica setima diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=17;
-	//			
-	//	for(int i=2; i<=6;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=6) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica oitava diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=25;
-	//			
-	//	for(int i=3; i<=6;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=6) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	////verifica nona diagonal
-	//avaliando='1';
-	//for(int j=0; j<2;j++)
-	//{
-	//	int posIni=34;
-	//			
-	//	for(int i=4; i<=6;i++)
-	//	{
-	//			
-	//			salto[0]=posIni;
-	//			salto[1]=salto[0]+listaPulo[i];
-	//			salto[2]=salto[1]+listaPulo[i+1];
-	//			salto[3]=salto[2]+listaPulo[i+2];
-	//			
-	//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-	//			{
-	//				if((i!=6) && board[salto[3]] ==avaliando)//ganhou
-	//					return(avaliando);
-	//				else//oponente ganhou
-	//					return(Oponente(avaliando));
-	//			}
-	//			else{}//nothing
-	//		posIni=posIni+listaPulo[i];			
-
-	//	}
-	//	avaliando='2';
-	//}
-
-	//return('0');
+	
 }
 
-char Board::AvaliaDiagonal(int posIni) //    "/"
+char Board::AvaliaDiagonal(int posIni, int avaliar) //    "/"
 {
+	
+	char buffer[10];
+	_itoa_s (avaliar,buffer,10);//coloca o int avaliar em um array
+	char avaliando=buffer[0];
 
-	int avaliando='1';
 	int salto[4];
 	int listaPulo[8]={5,6,7,8,8,7,6,5};
 	int posFin=0;	
 	int primeiroPulo=0;
-	int nCelulas=0;
+	int fimInt=0;
 
 	//definições feitas olhando o tabuleiro
 	
-	if(posIni==0){ posFin=26;primeiroPulo=0;nCelulas=3;}
-	else if(posIni==1){ posFin=35;primeiroPulo=0;nCelulas=4;}
-	else if(posIni==2){ posFin=43;primeiroPulo=0;nCelulas=5;}
-	else if(posIni==3){ posFin=50;primeiroPulo=0;nCelulas=6;}
-	else if(posIni==4){ posFin=56;primeiroPulo=0;nCelulas=7;}
-	else if(posIni==10){ posFin=57;primeiroPulo=1;nCelulas=6;}
-	else if(posIni==17){ posFin=58;primeiroPulo=2;nCelulas=5;}
-	else if(posIni==25){ posFin=59;primeiroPulo=3;nCelulas=4;}
-	else if(posIni==34){ posFin=60;primeiroPulo=4;nCelulas=3;}
-	else return('6');//tenso
+	if(posIni==0){ posFin=26;primeiroPulo=0;fimInt=2;}
+	else if(posIni==1){ posFin=35;primeiroPulo=0;fimInt=3;}
+	else if(posIni==2){ posFin=43;primeiroPulo=0;fimInt=4;}
+	else if(posIni==3){ posFin=50;primeiroPulo=0;fimInt=5;}
+	else if(posIni==4){ posFin=56;primeiroPulo=0;fimInt=6;}
+	else if(posIni==10){ posFin=57;primeiroPulo=1;fimInt=6;}
+	else if(posIni==17){ posFin=58;primeiroPulo=2;fimInt=6;}
+	else if(posIni==25){ posFin=59;primeiroPulo=3;fimInt=6;}
+	else if(posIni==34){ posFin=60;primeiroPulo=4;fimInt=6;}
+	else return('0');//espero nao cair aki
 	
 	//verifica diagonal
-	avaliando='1';//começa avaliando brancas
-	for(int j=0; j<2;j++)//avalia para brancas e pretas
+	
+	
+	for(int i=primeiroPulo; i<=fimInt;i++)
 	{
-		for(int i=primeiroPulo; i<=nCelulas;i++)
-		{
 				
-				salto[0]=posIni;
-				salto[1]=salto[0]+listaPulo[i];
-				salto[2]=salto[1]+listaPulo[i+1];
-				salto[3]=salto[2]+listaPulo[i+2];
+			salto[0]=posIni;
+			salto[1]=salto[0]+listaPulo[i];
+			salto[2]=salto[1]+listaPulo[i+1];
+			salto[3]=salto[2]+listaPulo[i+2];
 				
-				if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-				{
-					if((i!=nCelulas) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
-						return(avaliando);
-					else//oponente ganhou
-						return(Oponente(avaliando));
-				}
-				else{}//nothing
-			posIni=posIni+listaPulo[i];			
+			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
+			{
+				if((i!=fimInt) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
+					return(avaliando);
+				else//oponente ganhou
+					return(Oponente(avaliando));
+			}
+			else{}//nothing
+		posIni=posIni+listaPulo[i];			
 
-		}
-		avaliando='2';
+		
+		
 	}
 	return('0');
 
