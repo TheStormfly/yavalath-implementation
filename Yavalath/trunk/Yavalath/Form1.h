@@ -44,6 +44,7 @@ namespace Yavalath {
 
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  estadoAtualBoard;
 
 
 	protected: 
@@ -65,6 +66,7 @@ namespace Yavalath {
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->estadoAtualBoard = (gcnew System::Windows::Forms::Label());
 			this->newgame = (gcnew System::Windows::Forms::Button());
 			this->whiteone = (gcnew System::Windows::Forms::RadioButton());
 			this->blackone = (gcnew System::Windows::Forms::RadioButton());
@@ -72,16 +74,27 @@ namespace Yavalath {
 			this->selectComputer = (gcnew System::Windows::Forms::ComboBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"panel1.BackgroundImage")));
+			this->panel1->Controls->Add(this->estadoAtualBoard);
 			this->panel1->Location = System::Drawing::Point(-1, 0);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(568, 504);
 			this->panel1->TabIndex = 0;
 			this->panel1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::panel1_MouseClick);
+			// 
+			// estadoAtualBoard
+			// 
+			this->estadoAtualBoard->AutoSize = true;
+			this->estadoAtualBoard->Location = System::Drawing::Point(3, 0);
+			this->estadoAtualBoard->Name = L"estadoAtualBoard";
+			this->estadoAtualBoard->Size = System::Drawing::Size(89, 13);
+			this->estadoAtualBoard->TabIndex = 0;
+			this->estadoAtualBoard->Text = L"ESTADO ATUAL";
 			// 
 			// newgame
 			// 
@@ -134,8 +147,6 @@ namespace Yavalath {
 			this->selectComputer->Name = L"selectComputer";
 			this->selectComputer->Size = System::Drawing::Size(103, 21);
 			this->selectComputer->TabIndex = 8;
-			this->selectComputer->Text = L"Black";
-			this->selectComputer->SelectedIndex=0;
 			// 
 			// label1
 			// 
@@ -173,6 +184,8 @@ namespace Yavalath {
 			this->Name = L"Form1";
 			this->Text = L"Yavalath";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -193,13 +206,26 @@ namespace Yavalath {
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 						board->NextTurn();
 						this->Turno->Text = L"Turn: White";//Muda de turno
+						this->estadoAtualBoard->Text=gcnew String(board->PrintBoard().c_str());
+						
 					}
 					else // se o turno é das brancas
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
 						board->NextTurn();
 						this->Turno->Text = L"Turn: Black";//muda de turno
+						this->estadoAtualBoard->Text=gcnew String(board->PrintBoard().c_str());
+						
 					}
+				 
+						if(board->horizontal()=='1')
+							this->Turno->Text = L"BRANCAS GANHOOOO";
+						if(board->horizontal()=='2')
+							this->Turno->Text = L"PRETAS GANHOOOO";
+						if(board->diagonal1()=='1')
+							this->Turno->Text = L"BRANCAS GANHOOOO";
+						if(board->diagonal1()=='2')
+							this->Turno->Text = L"PRETAS GANHOOOO";
 					
 
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
