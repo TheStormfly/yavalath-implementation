@@ -18,7 +18,7 @@ class Board
 		string Board::PrintBoard();
 		char Board::horizontal();//o para ninguem ganho 1 para brancas 2 para pretas
 		char Board::diagonal1();
-		char Board::AvaliaDiagonal(int posIni);
+		char Board::AvaliaDiagonal(int posIni, int avaliar);
 
 		bool hexagonoClicadoEhValido(int x, int y, Ponto *p);
 };
