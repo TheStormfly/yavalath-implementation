@@ -177,7 +177,7 @@ char Board::horizontal()
 {
 
 	char resultados[18];
-	for(int i=0;i<9;i++){//brancas
+	
 		resultados[0]=AvaliaHorizontal(0,1);
 		resultados[1]=AvaliaHorizontal(5,1);
 		resultados[2]=AvaliaHorizontal(11,1);
@@ -187,8 +187,8 @@ char Board::horizontal()
 		resultados[6]=AvaliaHorizontal(43,1);
 		resultados[7]=AvaliaHorizontal(50,1);
 		resultados[8]=AvaliaHorizontal(56,1);
-	}
-	for(int i=0;i<9;i++){//pretas
+	
+	
 		resultados[9]=AvaliaHorizontal(0,2);
 		resultados[10]=AvaliaHorizontal(5,2);
 		resultados[11]=AvaliaHorizontal(11,2);
@@ -198,13 +198,14 @@ char Board::horizontal()
 		resultados[15]=AvaliaHorizontal(43,2);
 		resultados[16]=AvaliaHorizontal(50,2);
 		resultados[17]=AvaliaHorizontal(56,2);
-	}
+	
 
 	for(int i=0;i<18;i++)
 	{
 		if(resultados[i]!='0')
 			return(resultados[i]);
 	}
+	return('0');
 	
 }
 
@@ -309,7 +310,7 @@ char Board::diagonal1() //    "/"
 			return(resultados2[i]);
 	}
 			
-	
+	return('0');
 }
 
 
