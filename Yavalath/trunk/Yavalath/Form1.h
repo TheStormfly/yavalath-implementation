@@ -19,7 +19,6 @@ namespace Yavalath {
 			//TODO: Add the constructor code here
 			ai = new AI();
 			board = new Board();
-			board->SetTurn(1);
 						
 		}
 
@@ -248,6 +247,7 @@ namespace Yavalath {
 				 
 				 if(this->whiteone->Checked)
 				 {
+					this->board->SetTurn(1);
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
 						 this->ai->ourColor = 2;
@@ -262,6 +262,7 @@ namespace Yavalath {
 				 }
 				 else
 				 {
+					 this->board->SetTurn(2);
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
 						 this->ai->ourColor = 2;
