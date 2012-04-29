@@ -175,182 +175,82 @@ char Oponente(char avaliando)
 
 char Board::horizontal()
 {
-	char avaliando='1';
+
+	char resultados[18];
+	for(int i=0;i<9;i++){//brancas
+		resultados[0]=AvaliaHorizontal(0,1);
+		resultados[1]=AvaliaHorizontal(5,1);
+		resultados[2]=AvaliaHorizontal(11,1);
+		resultados[3]=AvaliaHorizontal(18,1);
+		resultados[4]=AvaliaHorizontal(26,1);
+		resultados[5]=AvaliaHorizontal(35,1);
+		resultados[6]=AvaliaHorizontal(43,1);
+		resultados[7]=AvaliaHorizontal(50,1);
+		resultados[8]=AvaliaHorizontal(56,1);
+	}
+	for(int i=0;i<9;i++){//pretas
+		resultados[9]=AvaliaHorizontal(0,2);
+		resultados[10]=AvaliaHorizontal(5,2);
+		resultados[11]=AvaliaHorizontal(11,2);
+		resultados[12]=AvaliaHorizontal(18,2);
+		resultados[13]=AvaliaHorizontal(26,2);
+		resultados[14]=AvaliaHorizontal(35,2);
+		resultados[15]=AvaliaHorizontal(43,2);
+		resultados[16]=AvaliaHorizontal(50,2);
+		resultados[17]=AvaliaHorizontal(56,2);
+	}
+
+	for(int i=0;i<18;i++)
+	{
+		if(resultados[i]!='0')
+			return(resultados[i]);
+	}
+	
+}
+
+char Board::AvaliaHorizontal(int posIni, int avaliar)
+{
+
+	char buffer[10];
+	_itoa_s (avaliar,buffer,10);//coloca o int avaliar em um array
+	char avaliando=buffer[0];
+	int posFin;
+
+	//definições feitas olhando o tabuleiro
+	
+	if(posIni==0){ posFin=2;}
+	else if(posIni==5){ posFin=8;}
+	else if(posIni==11){ posFin=15;}
+	else if(posIni==18){ posFin=23;}
+	else if(posIni==26){ posFin=32;}
+	else if(posIni==35){ posFin=40;}
+	else if(posIni==43){ posFin=47;}
+	else if(posIni==50){ posFin=53;}
+	else if(posIni==56){ posFin=58;}
+	else return('0');//espero nao cair aki
+	
+	for(int i=posIni; i<=posFin;i++)
+	{
+		if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
+		{
+			if(i!=posFin && this->board[i+3]==avaliando)//ganhou
+				return(avaliando);
+			else//oponente ganhou
+				return(Oponente(avaliando));
+		}
+		else{}	//nothing
 		
-	//primeira linha ----  verifica posiçao 0 a 4
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=0; i<=2;i++)//verifica primeira linha
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=2 && this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-	//segunda linha linha verifica posiçao 5 a 10
-	avaliando='1';
-	for(int j=0; j<2;j++)
-	{
-		for(int i=5; i<=8;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=8 &&this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-	//terceira linha linha verifica posiçao 11 a 17
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=11; i<=15;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=15 &&this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-	//quarta linha linha verifica posiçao 18 a 25
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=18; i<=23;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=23 &&this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-	//quinta linha linha verifica posiçao 26 a 34
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=26; i<=32;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=32 &&this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-	//sexta linha linha verifica posiçao 35 a 42
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=35; i<=40;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=40 &&this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
 	}
 
-	//sétima linha linha verifica posiçao 43 a 49
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=43; i<=47;i++)
-		{
-			if(i!=47 &&this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-
-	//oitava linha linha verifica posiçao 50 a 55
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=50; i<=53;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=53 && this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-
-	//nona linha linha verifica posiçao 56 a 60 
-	avaliando='1';
-	for(int j=0; j<2;j++)//verifica para brancas e pretas
-	{
-		for(int i=56; i<=58;i++)
-		{
-			if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
-			{
-				if(i!=58 && this->board[i+3]==avaliando)//ganhou
-					return(avaliando);
-				else//oponente ganhou
-					return(Oponente(avaliando));
-			}
-			else;
-				//nothing
-		}
-		avaliando='2';
-	}
-
-	//se passo por tudo e nada deu
 	return('0');
 }
+
+
 
 char Board::diagonal1() //    "/"
 {
 	char resultados[18];
-	for(int i=0;i<9;i++){//brancas
+	
 		resultados[0]=AvaliaDiagonal(0,1);
 		resultados[1]=AvaliaDiagonal(1,1);
 		resultados[2]=AvaliaDiagonal(2,1);
@@ -360,8 +260,8 @@ char Board::diagonal1() //    "/"
 		resultados[6]=AvaliaDiagonal(17,1);
 		resultados[7]=AvaliaDiagonal(25,1);
 		resultados[8]=AvaliaDiagonal(34,1);
-	}
-	for(int i=0;i<9;i++){//pretas
+	
+	
 		resultados[9]=AvaliaDiagonal(0,2);
 		resultados[10]=AvaliaDiagonal(1,2);
 		resultados[11]=AvaliaDiagonal(2,2);
@@ -371,16 +271,49 @@ char Board::diagonal1() //    "/"
 		resultados[15]=AvaliaDiagonal(17,2);
 		resultados[16]=AvaliaDiagonal(25,2);
 		resultados[17]=AvaliaDiagonal(34,2);
-	}
+	
+
+	int resultados2[18];
+	
+		resultados2[0]=AvaliaDiagonal2(4,1);
+		resultados2[1]=AvaliaDiagonal2(3,1);
+		resultados2[2]=AvaliaDiagonal2(2,1);
+		resultados2[3]=AvaliaDiagonal2(1,1);
+		resultados2[4]=AvaliaDiagonal2(0,1);
+		resultados2[5]=AvaliaDiagonal2(5,1);
+		resultados2[6]=AvaliaDiagonal2(11,1);
+		resultados2[7]=AvaliaDiagonal2(18,1);
+		resultados2[8]=AvaliaDiagonal2(26,1);
+	
+		resultados2[9]=AvaliaDiagonal2(4,2);
+		resultados2[10]=AvaliaDiagonal2(3,2);
+		resultados2[11]=AvaliaDiagonal2(2,2);
+		resultados2[12]=AvaliaDiagonal2(1,2);
+		resultados2[13]=AvaliaDiagonal2(0,2);
+		resultados2[14]=AvaliaDiagonal2(5,2);
+		resultados2[15]=AvaliaDiagonal2(11,2);
+		resultados2[16]=AvaliaDiagonal2(18,2);
+		resultados2[17]=AvaliaDiagonal2(26,2);
+	
 
 	for(int i=0;i<18;i++)
 	{
 		if(resultados[i]!='0')
 			return(resultados[i]);
 	}
+	
+	
+	for(int i=0;i<18;i++)
+	{
+		if(resultados2[i]!='0')
+			return(resultados2[i]);
+	}
 			
 	
 }
+
+
+
 
 char Board::AvaliaDiagonal(int posIni, int avaliar) //    "/"
 {
@@ -406,6 +339,61 @@ char Board::AvaliaDiagonal(int posIni, int avaliar) //    "/"
 	else if(posIni==17){ posFin=58;primeiroPulo=2;fimInt=6;}
 	else if(posIni==25){ posFin=59;primeiroPulo=3;fimInt=6;}
 	else if(posIni==34){ posFin=60;primeiroPulo=4;fimInt=6;}
+	else return('0');//espero nao cair aki
+	
+	//verifica diagonal
+	
+	
+	for(int i=primeiroPulo; i<=fimInt;i++)
+	{
+				
+			salto[0]=posIni;
+			salto[1]=salto[0]+listaPulo[i];
+			salto[2]=salto[1]+listaPulo[i+1];
+			salto[3]=salto[2]+listaPulo[i+2];
+				
+			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
+			{
+				if((i!=fimInt) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
+					return(avaliando);
+				else//oponente ganhou
+					return(Oponente(avaliando));
+			}
+			else{}//nothing
+		posIni=posIni+listaPulo[i];			
+
+		
+		
+	}
+	return('0');
+
+
+}
+
+char Board::AvaliaDiagonal2(int posIni, int avaliar) //    "\"
+{
+	
+	char buffer[10];
+	_itoa_s (avaliar,buffer,10);//coloca o int avaliar em um array
+	char avaliando=buffer[0];
+
+	int salto[4];
+	int listaPulo[9]={5,6,7,8,9,9,8,7,6};
+	int posFin=0;	
+	int primeiroPulo=0;
+	int fimInt=0;
+
+	//definições feitas olhando o tabuleiro
+	
+	if(posIni==4){ posFin=34;primeiroPulo=1;fimInt=3;}
+	else if(posIni==3){ posFin=42;primeiroPulo=1;fimInt=4;}
+	else if(posIni==2){ posFin=49;primeiroPulo=1;fimInt=5;}
+	else if(posIni==1){ posFin=55;primeiroPulo=1;fimInt=6;}
+	else if(posIni==0){ posFin=60;primeiroPulo=1;fimInt=6;}
+	else if(posIni==5){ posFin=59;primeiroPulo=2;fimInt=6;}
+	else if(posIni==11){ posFin=58;primeiroPulo=3;fimInt=7;}
+	else if(posIni==18){ posFin=57;primeiroPulo=4;fimInt=7;}
+	else if(posIni==26){ posFin=56;primeiroPulo=5;fimInt=6;}
 	else return('0');//espero nao cair aki
 	
 	//verifica diagonal
