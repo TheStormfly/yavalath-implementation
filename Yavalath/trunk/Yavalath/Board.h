@@ -21,4 +21,6 @@ class Board
 		char Board::AvaliaDiagonal(int posIni, int avaliar);
 		bool newgame;
 		bool hexagonoClicadoEhValido(int x, int y, Ponto *p);
+		char Board::AvaliaHorizontal(int posIni, int avaliar);
+		char Board::AvaliaDiagonal2(int posIni, int avaliar);
 };
