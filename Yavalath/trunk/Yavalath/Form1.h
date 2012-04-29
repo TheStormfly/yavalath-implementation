@@ -251,12 +251,14 @@ namespace Yavalath {
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
 						 this->ai->ourColor = 2;
+						 this->ai->enemyColor =1;
 						 this->ai->newGame = true;
 						 this->ai->Play(); // chama a ia (minimax...)
 					 }
 					 else if(this->selectComputer->SelectedIndex == 0)
 					 {
 						 this->ai->ourColor = 1;
+						 this->ai->enemyColor = 2;
 						 this->ai->newGame = true;
 					 }
 				 }
@@ -266,6 +268,7 @@ namespace Yavalath {
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
 						 this->ai->ourColor = 2;
+						 this->ai->enemyColor = 1;
 						 this->ai->newGame = true;
 					 }
 					 else 
@@ -273,12 +276,12 @@ namespace Yavalath {
 						 if(this->selectComputer->SelectedIndex == 0)
 						 {
 							 this->ai->ourColor = 1;
+							 this->ai->enemyColor =2;
 							 this->ai->newGame = true;
 							 this->ai->Play(); // chama a ia (minimax...)
 						 }
 					 }
 				 }
-				
 				 
 			 }
 private: System::Void whiteone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "Minimax.h"
 
 
@@ -13,43 +13,31 @@ Minimax::~Minimax(void)
 
 
 
-//public Grid MakeMove(Grid g)
+//passar cor invertida?
+//float Minimax::Negascout(unsigned char board[],  short int  *bestMove, float alpha, float beta, int depth, short int color)
 //{
-//    GridCells move;
-//    this->miniMaxCount = 0;
-//    Minimax(g, out move, float.MinValue, float.MaxValue);
-//    Console.WriteLine("Minimax method calls: {0}", miniMaxCount);
-//    return g.MakeMove(move);
+//		float a, b, t, i;
+//        this->miniMaxCount++;
+//
+//		 //if(depth ==0)
+//			//return evaluate(nodo);
+//
+//		a = alpha;
+//		b = beta;
+//
+//		color = 3 - color; // inverte cor para passar
+//		ArrayList^ filhos = this->ai->JogadasPossiveis(this->board->board, color);
+//
+//		for(int i=0; i<filhos->Count; i++) // para cada filho, chama o negascout 
+//		{
+//		  t = - Negascout( filhos[i], *bestMove, -b, -a, depth-1, color);
+//		  if ( (t > a) && (t < beta) && (i > 0) && (depth < maxDepth-1) )
+//			 a = - Negascout( filhos[i], *bestMove, -beta, -t, depth-1, color);    /* re-search */
+//		  a = max( a, t );
+//		  if ( a >= beta )
+//			 return a;                                /* cut-off */
+//		  b = a + 1;                      /* set new null window */
+//	    }
+//	    return a;
 //}
-
-void Minimax::AlphaBetaMinimax(Board board,  short int  *bestMove, float alpha, float beta, int depth = 1)
-{
-        this->miniMaxCount++;
-
- 
-
-  //      if (board->IsWinner)
-  //          //return 1f / depth;
-
-  //      if (board->IsLoser)
-  //          //return -1f / depth;
-
-		//for (int i=0; i<
-
-  //      foreach (var move in g.GetMoves())
-  //      {
-  //          var other = g.MakeMove(move);
-  //          alpha = -Minimax(other, out garbage, -beta, -alpha, depth + 1);
-
-  //          if (beta <= alpha)
-  //              return alpha;
-
-  //          if (alpha > bestResult)
-  //          {
-  //              best = move;
-  //              bestResult = alpha;
-  //          }
-  //      }
-  //      return bestResult;
-}
     
