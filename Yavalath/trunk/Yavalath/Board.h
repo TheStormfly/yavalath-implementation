@@ -6,9 +6,9 @@ class Board
 		int Turn;
 		vector<Hexagon*> hexagonVector;
 		unsigned char board[61];
-		void Initialize();
 
 	public:
+		void Initialize();
 		Board(void);
 		~Board(void);
 		int Board::GetTurn();
