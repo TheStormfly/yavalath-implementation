@@ -30,17 +30,15 @@ int Avaliacao(jogada)
 
 }
 
-//////retorna quantas jogadas existe para fazer
-//ArrayList JogadasPossiveis(unsigned char boardOrig[61], char ourCor)
-//{
-//	
-//	//jogada nJogada;
-//	ArrayList jogadasIniciais;
-//
-//	
-//	
-//	return (jogadasIniciais);
-//}
+////retorna quantas jogadas existe para fazer
+ArrayList^ JogadasPossiveis(unsigned char boardOrig[61], char ourCor)
+{
+	
+	//jogada nJogada;
+	ArrayList^ jogadasIniciais;
+	
+	return jogadasIniciais;
+}
 
 
 
