@@ -3,5 +3,8 @@
 class AI
 {
 	public:
-		bool Play(Board board, short int color, short int position);
+		short int ourColor;
+		bool newGame;
+		AI(void);
+		void Play();
 };

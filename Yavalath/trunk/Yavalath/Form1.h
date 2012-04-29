@@ -10,13 +10,14 @@ namespace Yavalath {
 	{
 	private:
 		Board* board;
-
+		AI* ai;
 	public:
 		Form1(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
+			ai = new AI();
 			board = new Board();
 			board->SetTurn(1);
 						
@@ -130,7 +131,7 @@ namespace Yavalath {
 			// Turno
 			// 
 			this->Turno->AutoSize = true;
-			this->Turno->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->Turno->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.0F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
 			this->Turno->Location = System::Drawing::Point(573, 135);
 			this->Turno->Name = L"Turno";
@@ -195,7 +196,7 @@ namespace Yavalath {
 	//evento quando alguma posição eh clicada
 	private: System::Void panel1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
-				 if(this->board->newgame == false)
+				 if(this->ai->newGame == false)
 					 return;
 
 				 Ponto p;
@@ -239,16 +240,45 @@ namespace Yavalath {
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
+				 this->board->Initialize();
+				 this->panel1->BackgroundImage = Image::FromFile("fundo.jpg");
+				 this->ai->newGame = false;
 				 //recomeça jogo
-				 //if(this->whiteone->Checked)
-					 if(this->selectComputer->SelectedItem == 1)
-						 this->board->newgame = true;
+
 				 
+				 if(this->whiteone->Checked)
+				 {
+					 if(this->selectComputer->SelectedIndex == 1)
+					 {
+						 this->ai->ourColor = 2;
+						 this->ai->newGame = true;
+						 this->ai->Play(); // chama a ia (minimax...)
+					 }
+					 else if(this->selectComputer->SelectedIndex == 0)
+					 {
+						 this->ai->ourColor = 1;
+						 this->ai->newGame = true;
+					 }
+				 }
+				 else
+				 {
+					 if(this->selectComputer->SelectedIndex == 1)
+					 {
+						 this->ai->ourColor = 2;
+						 this->ai->newGame = true;
+					 }
+					 else 
+					 {
+						 if(this->selectComputer->SelectedIndex == 0)
+						 {
+							 this->ai->ourColor = 1;
+							 this->ai->newGame = true;
+							 this->ai->Play(); // chama a ia (minimax...)
+						 }
+					 }
+				 }
 				
-
-
-
-
+				 
 			 }
 private: System::Void whiteone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
 		 {
