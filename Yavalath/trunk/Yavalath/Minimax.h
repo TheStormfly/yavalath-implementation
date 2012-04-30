@@ -4,6 +4,8 @@
 class Minimax
 {
 	public:
+		Board board;
+
 		short int bestMove;
 		short int ourColor;
 		short int enemyColor;
