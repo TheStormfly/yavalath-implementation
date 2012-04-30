@@ -28,7 +28,7 @@ void Board::Initialize()
 	this->newgame = false;// variável de controle de newgame
 
 	for(int i=0; i<61;i++)
-		board[i]='0';
+		board.b[i]='0';
 
 	//First line
 	this->hexagonVector.push_back(new Hexagon(157, 38));
@@ -110,11 +110,11 @@ bool Board::hexagonoClicadoEhValido(int x, int y, Ponto *p)
 	{
 		if(this->hexagonVector[i]->isInsideHexagon(x, y))
 		{
-			if(this->board[i]=='0')//ve se ta desocupado
+			if(this->board.b[i]=='0')//ve se ta desocupado
 			{
 				if(this->GetTurn()==2) //se o turno é das pretas
-					this->board[i] = '2';
-				else this->board[i] = '1';
+					this->board.b[i] = '2';
+				else this->board.b[i] = '1';
 
 				*p = hexagonVector[i]->getCenter();
 				return true;
@@ -131,7 +131,7 @@ string Board::PrintBoard()
 	unsigned char teste[61] = "unsigned char array";
 	stringstream buffer;
 	
-	buffer << this->board;
+	buffer << this->board.b;
 	string final(buffer.str());
 	return(final);
 }
@@ -232,9 +232,9 @@ char Board::AvaliaHorizontal(int posIni, int avaliar)
 	
 	for(int i=posIni; i<=posFin;i++)
 	{
-		if(this->board[i]==avaliando && this->board[i+1]==avaliando && this->board[i+2]==avaliando)
+		if(this->board.b[i]==avaliando && this->board.b[i+1]==avaliando && this->board.b[i+2]==avaliando)
 		{
-			if(i!=posFin && this->board[i+3]==avaliando)//ganhou
+			if(i!=posFin && this->board.b[i+3]==avaliando)//ganhou
 				return(avaliando);
 			else//oponente ganhou
 				return(Oponente(avaliando));
@@ -353,9 +353,9 @@ char Board::AvaliaDiagonal(int posIni, int avaliar) //    "/"
 			salto[2]=salto[1]+listaPulo[i+1];
 			salto[3]=salto[2]+listaPulo[i+2];
 				
-			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
+			if(board.b[salto[0]]==avaliando && board.b[salto[1]]==avaliando && board.b[salto[2]]==avaliando)
 			{
-				if((i!=fimInt) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
+				if((i!=fimInt) && board.b[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
 					return(avaliando);
 				else//oponente ganhou
 					return(Oponente(avaliando));
@@ -408,9 +408,9 @@ char Board::AvaliaDiagonal2(int posIni, int avaliar) //    "\"
 			salto[2]=salto[1]+listaPulo[i+1];
 			salto[3]=salto[2]+listaPulo[i+2];
 				
-			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
+			if(board.b[salto[0]]==avaliando && board.b[salto[1]]==avaliando && board.b[salto[2]]==avaliando)
 			{
-				if((i!=fimInt) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
+				if((i!=fimInt) && board.b[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
 					return(avaliando);
 				else//oponente ganhou
 					return(Oponente(avaliando));

@@ -5,7 +5,7 @@ class Board
 	private:
 		int Turn;
 		vector<Hexagon*> hexagonVector;
-		unsigned char board[61];
+		structBoard board;
 
 	public:
 		void Initialize();

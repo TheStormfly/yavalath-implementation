@@ -10,15 +10,16 @@ namespace Yavalath {
 	{
 	private:
 		Board* board;
-		AI* ai;
+		Minimax* minimax;
 	public:
 		Form1(void)
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			ai = new AI();
 			board = new Board();
+			minimax = new Minimax();
+			this->minimax->newGame = false;
 						
 		}
 
@@ -195,7 +196,7 @@ namespace Yavalath {
 	//evento quando alguma posição eh clicada
 	private: System::Void panel1_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
-				 if(this->ai->newGame == false)
+				 if(this->minimax->newGame == false)
 					 return;
 
 				 Ponto p;
@@ -242,7 +243,7 @@ namespace Yavalath {
 			 {
 				 this->board->Initialize();
 				 this->panel1->BackgroundImage = Image::FromFile("fundo.jpg");
-				 this->ai->newGame = false;
+				 this->minimax->newGame = false;
 				 //recomeça jogo
 
 				 
@@ -251,16 +252,16 @@ namespace Yavalath {
 					this->board->SetTurn(1);
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
-						 this->ai->ourColor = 2;
-						 this->ai->enemyColor =1;
-						 this->ai->newGame = true;
-						 this->ai->Play(); // chama a ia (minimax...)
+						 this->minimax->ourColor = 1;
+						 this->minimax->enemyColor =2;
+						 this->minimax->newGame = true;
+						 this->minimax->Play(); // chama a ia (minimax...)
 					 }
 					 else if(this->selectComputer->SelectedIndex == 0)
 					 {
-						 this->ai->ourColor = 1;
-						 this->ai->enemyColor = 2;
-						 this->ai->newGame = true;
+						 this->minimax->ourColor = 2;
+						 this->minimax->enemyColor = 1;
+						 this->minimax->newGame = true;
 					 }
 				 }
 				 else
@@ -268,18 +269,18 @@ namespace Yavalath {
 					 this->board->SetTurn(2);
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
-						 this->ai->ourColor = 2;
-						 this->ai->enemyColor = 1;
-						 this->ai->newGame = true;
+						 this->minimax->ourColor = 1;
+						 this->minimax->enemyColor = 2;
+						 this->minimax->newGame = true;
 					 }
 					 else 
 					 {
 						 if(this->selectComputer->SelectedIndex == 0)
 						 {
-							 this->ai->ourColor = 1;
-							 this->ai->enemyColor =2;
-							 this->ai->newGame = true;
-							 this->ai->Play(); // chama a ia (minimax...)
+							 this->minimax->ourColor = 2;
+							 this->minimax->enemyColor =1;
+							 this->minimax->newGame = true;
+							 this->minimax->Play(); // chama a ia (minimax...)
 						 }
 					 }
 				 }

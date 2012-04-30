@@ -4,6 +4,7 @@
 
 Minimax::Minimax(void)
 {
+	this->newGame = false;
 }
 
 
@@ -13,40 +14,34 @@ Minimax::~Minimax(void)
 
 
 // beta é valor maior, e alpha menor
-//passar cor invertida?
-//float Minimax::Negascout(unsigned char board[],  short int  *bestMove, float alpha, float beta, int depth, short int color)
-//{
-//		float a, b, t;
-//        this->miniMaxCount++;
-//
-//		 //if(depth ==0)
-//			//return evaluate(board, color);
-//
-//		a = alpha;
-//		b = beta;
-//
-//		color = 3 - color; // inverte cor para passar
-//		ArrayList^ filhos = gcnew ArrayList;
-//		filhos = ai.JogadasPossiveis(board, color);
-//
-//		for(int i=0; i<filhos->Count; i++) // para cada filho, chama o negascout 
-//		{
-//		  //t = - Negascout( aux[i], bestMove, -b, -a, depth-1, color);
-//
-//		  if ( (t > a) && (t < beta) && (i > 0) && (depth < maxDepth-1) )
-//		  {
-//			 //a = - Negascout( filhos[i], bestMove, -beta, -t, depth-1, color);    /* re-search */
-//		  }
-//		  
-//		  a = max( a, t );
-//
-//		  if ( a >= beta )
-//			 return a;                                /* cut-off */
-//		  
-//		  b = a + 1;                      /* set new null window */
-//	    }
-//	    return a;
-//}
+// enemy
+double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
+{
+		double a, b, t;
+        this->miniMaxCount++;
+
+		 //if(depth ==0)
+			//return evaluate(board, color);
+
+		//a = alpha;
+		//b = beta;
+
+		color = 3 - color; // inverte cor para passar
+		vector<structBoard> filhos;
+		this->JogadasPossiveis(game, &filhos, color);
+
+		for(int i=0; i <(int)filhos.size(); i++) // para cada filho, chama o negamax 
+		{
+            t = - Negamax(filhos[i], -beta, -alpha, depth-1,  -color);
+            
+            if (t >= beta)
+                return t;
+
+            if (t > alpha)
+				alpha = t;
+		}
+	    return a;
+}
 
 
 char Enemy(char avaliando)
@@ -286,5 +281,52 @@ char Minimax::AvaliaVitoriaDiagonal2(int posIni, int avaliar,unsigned char board
 	return('0');
 
 
+}
+
+//struct jogada {
+//    
+//	int nJogada; 
+//	unsigned char board[61];
+//    int avaliado;
+//    
+//};
+
+
+//aqui faz a chamada do negascout com os primeiros filhos do board
+void Minimax::Play()
+{
+	this->newGame = false;
+
+	vector<structBoard> filhos;
+//	this->JogadasPossiveis(game, &filhos, color);
+	double g, bestValue = -99999;
+
+	for(short int i=0; i <(short int)filhos.size(); i++) // para cada filho, chama o negascout 
+	{
+		g= -Negamax(filhos[i], -9999, 9999, 3, enemyColor);
+
+		if(g > bestValue)
+		{
+			bestValue = g;
+			this->bestMove = i;
+		}
+
+	} 
+}
+
+//int Avaliacao(jogada)
+//{
+//	
+//	return(rand() % 10 + 1);
+//
+//}
+
+////retorna quantas jogadas existe para fazer
+void Minimax::JogadasPossiveis(structBoard game, vector<structBoard> *filhos, char ourColor)
+{
+	//for...
+	structBoard filho = game;
+
+	(*filhos).push_back(filho);
 }
 	
