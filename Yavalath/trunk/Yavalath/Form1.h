@@ -17,7 +17,7 @@ namespace Yavalath {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			ai = new AI();
+			
 			board = new Board();
 						
 		}
@@ -221,6 +221,7 @@ namespace Yavalath {
 						
 					}
 				 
+								
 						if(board->horizontal()=='1')
 							this->Turno->Text = L"BRANCAS GANHOOOO";
 						if(board->horizontal()=='2')
