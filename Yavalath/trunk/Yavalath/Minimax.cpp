@@ -20,7 +20,7 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 		double t;
 
 		 if(depth == 0)
-			return 1;//evaluate(board, color);
+			return (Evaluate(game.b,color));//evaluate(board, color);
 
 
 
@@ -43,239 +43,78 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 }
 
 
+double AreaValiosa(unsigned char board[], char C)
+{
+	double evaluate=0;
+	for(int i=18;i<=42;i++)
+	{
+		if(board[i]==C )
+		{
+			evaluate +5;//mais cores no meio melhor
+		}
+		if(i>=26 && i<=34)
+		{
+			evaluate +5;//mais no meio melhor ainda
+		}
+	}
+	return evaluate;
+
+}
+
 
     
 
 double Minimax::Evaluate(unsigned char board[],int OurColor)
 {
-	double evaluate=0.5;
-	int winOrLose[3];
-	double pontos=0;
-	
-	//caso ja nao esteja colocado a nova jogada no tabuleiro
-//	board[pos]=OurColor;
-	
+	double evaluate=0;
+			
 	char buffer[10];
 	char OurC;
 	char OurE;
+	char vazio='0';
 	
 	//transforma int to char
 	_itoa_s (OurColor,buffer,10);
-	OurC=buffer[0];
-	
+	OurC=buffer[0];	
 	//ve qm eh nosso oponente
-	OurE=3-OurC;
+	_itoa_s (3-OurColor,buffer,10);
+	OurE=buffer[0];
 
-
-    // ve se a jogada nos leva a derrota ou vitoria
-	//winOrLose[0]=AvaliaVitoriaHorizontal(pos, OurColor, board);
-	//winOrLose[1]=AvaliaVitoriaDiagonal(pos, OurColor, board);
-	//winOrLose[2]=AvaliaVitoriaDiagonal2(pos, OurColor, board);
-	//
-	//if(winOrLose[0]==OurC || winOrLose[1]==OurC || winOrLose[2]==OurC)
-	//{
-	//	return(1);//caso de vitória
-	//}
-	//if(winOrLose[0]==OurE || winOrLose[1]==OurE || winOrLose[2]==OurE)
-	//{
-	//	return(0);//caso de derrota
-	//}
-
-	//***********outras heuristicas******************
-
-
-	//horizontais importantes
-	//if(pos>=26 && pos<35)
-	//{
-	//	//puntuação da linha do meio vale mais
-	//	if(pos>=28 && pos<32)
-	//	{
-	//		pontos=0.2;
-	//		evaluate=pontos+(pontos*evaluate);
-	//	}
-	//    pontos=0.5;
-	//	evaluate=pontos+(pontos*evaluate);
-	//}	
-	//
-	////diagonais importantes "/"
-	//if(pos==4 || pos==9 || pos==15 || pos==22 || pos==30 || pos==38 || pos==45 || pos==51 || pos==56)
-	//{
-	//	//puntuação mais do meio vale mais
-	//	if(pos==22 || pos==30 || pos==38)
-	//	{
-	//		pontos=0.2;
-	//		evaluate=pontos+(pontos*evaluate);
-	//	}
-	//    pontos=0.5;
-	//	evaluate=pontos+(pontos*evaluate);
-	//}
-
-	////diagonais importantes "\"
-	//if(pos==0 || pos==6 || pos==13 || pos==21 || pos==30 || pos==39 || pos==47 || pos==54 || pos==60)
-	//{
-	//	//puntuação mais do meio vale mais
-	//	if(pos==21 || pos==30 || pos==39)
-	//	{
-	//		pontos=0.2;
-	//		evaluate=pontos+(pontos*evaluate);
-	//	}
-	//    pontos=0.5;
-	//	evaluate=pontos+(pontos*evaluate);
-	//}
+	//copia para avaliar diagonal '/'
+	unsigned char copia[61];	
+	copia[0]=board[0];   copia[1]=board[5];   copia[2]=board[11];   copia[3]=board[18];   copia[4]=board[26];
+	copia[5]=board[1];   copia[6]=board[6];   copia[7]=board[12];   copia[8]=board[19];   copia[9]=board[27];   copia[10]=board[35];
+	copia[11]=board[2];   copia[12]=board[7];   copia[13]=board[13];   copia[14]=board[20];   copia[15]=board[28];   copia[16]=board[36];   copia[17]=board[43];
+	copia[18]=board[3];   copia[19]=board[8];   copia[20]=board[14];   copia[21]=board[21];   copia[22]=board[29];   copia[23]=board[37];   copia[24]=board[44];   copia[25]=board[50];
+	copia[26]=board[4];   copia[27]=board[9];   copia[28]=board[15];   copia[29]=board[22];   copia[30]=board[30];   copia[31]=board[38];   copia[32]=board[45];   copia[33]=board[51];   copia[34]=board[56];
+	copia[35]=board[10];   copia[36]=board[16];   copia[37]=board[23];   copia[38]=board[31];   copia[39]=board[39];   copia[40]=board[46];   copia[41]=board[52];   copia[42]=board[57];
+	copia[43]=board[17];   copia[44]=board[24];   copia[45]=board[32];   copia[46]=board[40];   copia[47]=board[47];   copia[48]=board[53];   copia[49]=board[58];
+	copia[50]=board[25];   copia[51]=board[33];   copia[52]=board[41];   copia[53]=board[48];   copia[54]=board[54];   copia[55]=board[59];
+	copia[56]=board[34];   copia[57]=board[42];   copia[58]=board[49];   copia[59]=board[55];   copia[60]=board[60];
 	
+	//copia para avaliar diagonal '\'
+	unsigned char copia1[61];
+	copia1[0]=board[4];   copia1[1]=board[10];   copia1[2]=board[17];   copia1[3]=board[25];   copia1[4]=board[34];
+	copia1[5]=board[3];   copia1[6]=board[9];   copia1[7]=board[16];   copia1[8]=board[24];   copia1[9]=board[33];   copia1[10]=board[42];
+	copia1[11]=board[2];   copia1[12]=board[8];   copia1[13]=board[15];   copia1[14]=board[23];   copia1[15]=board[32];   copia1[16]=board[41];   copia1[17]=board[49];
+	copia1[18]=board[1];   copia1[19]=board[7];   copia1[20]=board[14];   copia1[21]=board[22];   copia1[22]=board[31];   copia1[23]=board[40];   copia1[24]=board[48];   copia1[25]=board[55];
+	copia1[26]=board[0];   copia1[27]=board[6];   copia1[28]=board[13];   copia1[29]=board[21];   copia1[30]=board[30];   copia1[31]=board[39];   copia1[32]=board[47];   copia1[33]=board[54];   copia1[34]=board[60];
+	copia1[35]=board[5];   copia1[36]=board[12];   copia1[37]=board[20];   copia1[38]=board[29];   copia1[39]=board[38];   copia1[40]=board[46];   copia1[41]=board[53];   copia1[42]=board[59];
+	copia1[43]=board[11];   copia1[44]=board[19];   copia1[45]=board[28];   copia1[46]=board[37];   copia1[47]=board[45];   copia1[48]=board[52];   copia1[49]=board[58];
+	copia1[50]=board[18];   copia1[51]=board[27];   copia1[52]=board[36];   copia1[53]=board[44];   copia1[54]=board[51];   copia1[55]=board[57];
+	copia1[56]=board[26];   copia1[57]=board[35];   copia1[58]=board[43];   copia1[59]=board[50];   copia1[60]=board[56];
 
+	//ganhar ou perder
+	//board->IsGameOver(board);
+	
+	evaluate=evaluate+AreaValiosa(board,OurC);
+	evaluate=evaluate+AreaValiosa(copia,OurC);
+	evaluate=evaluate+AreaValiosa(copia1,OurC);
 
-	return (evaluate);
+	if(board[31]='2');
+	evaluate=99999;
+	return(evaluate);
 }
-
-
-//char Minimax::AvaliaVitoriaHorizontal(int posIni, int avaliar, unsigned char board[])
-//{
-//
-//	char buffer[10];
-//	_itoa_s (avaliar,buffer,10);//coloca o int avaliar em um array
-//	char avaliando=buffer[0];
-//	int posFin;
-//
-//	//definições feitas olhando o tabuleiro
-//	
-//	if(posIni>=0 && posIni<5){ posFin=2;posIni=0;}
-//	else if(posIni>=5 && posIni<11){ posFin=8;posIni=5;}
-//	else if(posIni>=11 && posIni<18){ posFin=15;posIni=11;}
-//	else if(posIni>=18 && posIni<26){ posFin=23;posIni=18;}
-//	else if(posIni>=26 && posIni<35){ posFin=32;posIni=26;}
-//	else if(posIni>=35 && posIni<43){ posFin=40;posIni=35;}
-//	else if(posIni>=43 && posIni<50){ posFin=47;posIni=43;}
-//	else if(posIni>=50 && posIni<56){ posFin=53;posIni=50;}
-//	else if(posIni>=56 && posIni<61){ posFin=58;posIni=56;}
-//	else return('0');//espero nao cair aki
-//	
-//	for(int i=posIni; i<=posFin;i++)
-//	{
-//		if(board[i]==avaliando && board[i+1]==avaliando && board[i+2]==avaliando)
-//		{
-//			if(i!=posFin && board[i+3]==avaliando)//ganhou
-//				return(avaliando);
-//			else//oponente ganhou
-//				return(Enemy(avaliando));
-//		}
-//		else{}	//nothing
-//		
-//	}
-//
-//	return('0');
-//}
-//
-//
-//char Minimax::AvaliaVitoriaDiagonal(int posIni, int avaliar,unsigned char board[]) //    "/"
-//	{
-//	
-//	char buffer[10];
-//	_itoa_s (avaliar,buffer,10);//coloca o int avaliar em um array
-//	char avaliando=buffer[0];
-//
-//	int salto[4];
-//	int listaPulo[8]={5,6,7,8,8,7,6,5};
-//	int posFin=0;	
-//	int primeiroPulo=0;
-//	int fimInt=0;
-//
-//	//definições feitas olhando o tabuleiro
-//	
-//	if(posIni==0 || posIni==5 || posIni==11 || posIni==18 || posIni==26){ posFin=26;primeiroPulo=0;fimInt=2;posIni=0;}
-//	else if(posIni==1 || posIni==6 || posIni==12 || posIni==19 || posIni==27 || posIni==35){ posFin=35;primeiroPulo=0;fimInt=3;posIni=1;}
-//	else if(posIni==2 || posIni==7 || posIni==13 || posIni==20 || posIni==28 || posIni==36 || posIni==43){ posFin=43;primeiroPulo=0;fimInt=4;posIni=2;}
-//	else if(posIni==3 || posIni==8 || posIni==14 || posIni==21 || posIni==29 || posIni==37 || posIni==44 || posIni==50){ posFin=50;primeiroPulo=0;fimInt=5;posIni=3;}
-//	else if(posIni==4 || posIni==9 || posIni==15 || posIni==22 || posIni==30 || posIni==38 || posIni==45 || posIni==51 || posIni==56){ posFin=56;primeiroPulo=0;fimInt=6;posIni=4;}
-//	else if(posIni==10 || posIni==16 || posIni==23 || posIni==31 || posIni==39 || posIni==46 || posIni==52 || posIni==57){ posFin=57;primeiroPulo=1;fimInt=6;posIni=10;}
-//	else if(posIni==17 || posIni==24 || posIni==32 || posIni==40 || posIni==47 || posIni==53 || posIni==58){ posFin=58;primeiroPulo=2;fimInt=6;posIni=17;}
-//	else if(posIni==25 || posIni==33 || posIni==41 || posIni==48 || posIni==54 || posIni==59){ posFin=59;primeiroPulo=3;fimInt=6;posIni=25;}
-//	else if(posIni==34 || posIni==42 || posIni==49 || posIni==55 || posIni==60){ posFin=60;primeiroPulo=4;fimInt=6;posIni=34;}
-//	else return('0');//espero nao cair aki
-//	
-//	//verifica diagonal
-//	
-//	
-//	for(int i=primeiroPulo; i<=fimInt;i++)
-//	{
-//				
-//			salto[0]=posIni;
-//			salto[1]=salto[0]+listaPulo[i];
-//			salto[2]=salto[1]+listaPulo[i+1];
-//			salto[3]=salto[2]+listaPulo[i+2];
-//				
-//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-//			{
-//				if((i!=fimInt) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
-//					return(avaliando);
-//				else//oponente ganhou
-//					return(Enemy(avaliando));
-//			}
-//			else{}//nothing
-//		posIni=posIni+listaPulo[i];			
-//
-//		
-//		
-//	}
-//	return('0');
-//
-//
-//}
-//
-//char Minimax::AvaliaVitoriaDiagonal2(int posIni, int avaliar,unsigned char board[]) //    "\"
-//{
-//	
-//	char buffer[10];
-//	_itoa_s (avaliar,buffer,10);//coloca o int avaliar em um array
-//	char avaliando=buffer[0];
-//
-//	int salto[4];
-//	int listaPulo[9]={5,6,7,8,9,9,8,7,6};
-//	int posFin=0;	
-//	int primeiroPulo=0;
-//	int fimInt=0;
-//
-//	//definições feitas olhando o tabuleiro
-//	
-//	if(posIni==4 || posIni==10 || posIni==17 || posIni==25 || posIni==34){ posFin=34;primeiroPulo=1;fimInt=3;posIni=4;}
-//	else if(posIni==3 || posIni==9 || posIni==16 || posIni==24 || posIni==33 || posIni==42){ posFin=42;primeiroPulo=1;fimInt=4;posIni=3;}
-//	else if(posIni==2 || posIni==8 || posIni==15 || posIni==23 || posIni==32 || posIni==41 || posIni==49){ posFin=49;primeiroPulo=1;fimInt=5;posIni=2;}
-//	else if(posIni==1 || posIni==7 || posIni==14 || posIni==22 || posIni==31 || posIni==40 || posIni==48 || posIni==55){ posFin=55;primeiroPulo=1;fimInt=6;posIni=1;}
-//	else if(posIni==0 || posIni==6 || posIni==13 || posIni==21 || posIni==30 || posIni==39 || posIni==47 || posIni==54 || posIni==60){ posFin=60;primeiroPulo=1;fimInt=6;posIni=0;}
-//	else if(posIni==5 || posIni==12 || posIni==20 || posIni==29 || posIni==38 || posIni==46 || posIni==53 || posIni==59){ posFin=59;primeiroPulo=2;fimInt=6;posIni=5;}
-//	else if(posIni==11 || posIni==19 || posIni==28 || posIni==37 || posIni==45 || posIni==52 || posIni==58){ posFin=58;primeiroPulo=3;fimInt=7;posIni=11;}
-//	else if(posIni==18 || posIni==27 || posIni==36 || posIni==44 || posIni==51 || posIni==57){ posFin=57;primeiroPulo=4;fimInt=7;posIni=18;}
-//	else if(posIni==26 || posIni==35 || posIni==43 || posIni==50 || posIni==56){ posFin=56;primeiroPulo=5;fimInt=6;posIni=26;}
-//	else return('0');//espero nao cair aki
-//	
-//	//verifica diagonal
-//	
-//	
-//	for(int i=primeiroPulo; i<=fimInt;i++)
-//	{
-//				
-//			salto[0]=posIni;
-//			salto[1]=salto[0]+listaPulo[i];
-//			salto[2]=salto[1]+listaPulo[i+1];
-//			salto[3]=salto[2]+listaPulo[i+2];
-//				
-//			if(board[salto[0]]==avaliando && board[salto[1]]==avaliando && board[salto[2]]==avaliando)
-//			{
-//				if((i!=fimInt) && board[salto[3]] ==avaliando)//ganhou, se nao eh a ultima celula (pois o salto avaliado ali sai do tabueliro) 
-//					return(avaliando);
-//				else//oponente ganhou
-//					return(Enemy(avaliando));
-//			}
-//			else{}//nothing
-//		posIni=posIni+listaPulo[i];			
-//
-//		
-//		
-//	}
-//	return('0');
-//
-//
-//}
 
 
 

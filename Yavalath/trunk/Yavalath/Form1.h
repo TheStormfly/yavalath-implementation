@@ -221,11 +221,11 @@ namespace Yavalath {
 					}
 				 
 							
-						if(board->IsGameOver()=='1')
+						if(board->IsGameOver(board->board.b)=='1')
 							this->Turno->Text = L"BRANCAS GANHO";
-						if(board->IsGameOver()=='2')
+						if(board->IsGameOver(board->board.b)=='2')
 							this->Turno->Text = L"PRETAS GANHO";
-						if(board->IsGameOver()=='0')
+						if(board->IsGameOver(board->board.b)=='0')
 							this->Turno->Text = L"ASDFAs";
 					
 
@@ -238,18 +238,18 @@ namespace Yavalath {
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
 						board->board.b[minimax->bestMove]= '1';
-						if(board->IsGameOver()=='1')
+						if(board->IsGameOver(board->board.b)=='1')
 							this->Turno->Text = L"BRANCAS GANHO";
-						if(board->IsGameOver()=='2')
+						if(board->IsGameOver(board->board.b)=='2')
 							this->Turno->Text = L"PRETAS GANHO";
 					}
 					else 
 					{
 							myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 							board->board.b[minimax->bestMove]= '2';
-							if(board->IsGameOver()=='1')
+							if(board->IsGameOver(board->board.b)=='1')
 							this->Turno->Text = L"BRANCAS GANHO";
-						if(board->IsGameOver()=='2')
+							if(board->IsGameOver(board->board.b)=='2')
 							this->Turno->Text = L"PRETAS GANHO";
 					}
 					Ponto p = board->returnHexPonto(minimax->bestMove);
@@ -282,7 +282,11 @@ namespace Yavalath {
 						 Ponto p = board->returnHexPonto(minimax->bestMove);
 						 board->board.b[minimax->bestMove]= '1';
 						 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
-
+						 
+						 if(board->IsGameOver(board->board.b)=='1')
+						 this->Turno->Text = L"BRANCAS GANHO";
+						 if(board->IsGameOver(board->board.b)=='2')
+						 this->Turno->Text = L"PRETAS GANHO";
 
 					 }
 					 else if(this->selectComputer->SelectedIndex == 0)
@@ -313,6 +317,11 @@ namespace Yavalath {
 							 Ponto p = board->returnHexPonto(minimax->bestMove);
 							 board->board.b[minimax->bestMove]= '2';
 							 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+							 
+							 if(board->IsGameOver(board->board.b)=='1')
+							 this->Turno->Text = L"BRANCAS GANHO";
+							 if(board->IsGameOver(board->board.b)=='2')
+							 this->Turno->Text = L"PRETAS GANHO";
 						 }
 					 }
 				 }
