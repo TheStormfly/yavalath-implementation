@@ -19,4 +19,5 @@ using namespace std;
 #include "Hexagon.h"
 #include "Board.h"
 #include "AI.h"
+#include "Minimax.h"
 #include "Form1.h"

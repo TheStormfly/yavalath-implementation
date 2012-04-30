@@ -18,9 +18,16 @@ AI::AI(void)
 	this->newGame = false;
 }
 
+//aqui faz a chamada do negascout com os primeiros filhos do board
 void AI::Play()
 {
-	//a[0] = (Rec *)malloc(sizeof(Rec));
+	//Minimax *minimax = new Minimax();
+	////a[0] = (Rec *)malloc(sizeof(Rec));
+	//ArrayList^ filhosIniciais = gcnew ArrayList;
+	//for(int i=0; i<filhosIniciais->Count; i++)
+	//{
+	// minimax->Negascout(filhosIniciais[i], *bestMove, -9999, 9999, 2, enemyColor);
+	//}
 }
 
 int Avaliacao(jogada)
@@ -31,11 +38,11 @@ int Avaliacao(jogada)
 }
 
 ////retorna quantas jogadas existe para fazer
-ArrayList^ JogadasPossiveis(unsigned char boardOrig[61], char ourCor)
+ArrayList^ AI::JogadasPossiveis(unsigned char boardOrig[61], char ourCor)
 {
 	
 	//jogada nJogada;
-	ArrayList^ jogadasIniciais;
+	ArrayList^ jogadasIniciais = gcnew ArrayList;
 	
 	return jogadasIniciais;
 }

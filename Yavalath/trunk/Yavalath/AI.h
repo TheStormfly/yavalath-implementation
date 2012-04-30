@@ -9,6 +9,7 @@ class AI
 		bool newGame;
 		AI(void);
 		void Play();
+		ArrayList^ JogadasPossiveis(unsigned char boardOrig[61], char ourCor);
 
 
 
