@@ -17,7 +17,7 @@ namespace Yavalath {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			
+			ai = new AI();
 			board = new Board();
 						
 		}
