@@ -136,10 +136,10 @@ namespace Yavalath {
 			this->Turno->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.0F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
 			this->Turno->Location = System::Drawing::Point(573, 135);
-			this->Turno->Name = L"Turno";
+			this->Turno->Name = L"name";
 			this->Turno->Size = System::Drawing::Size(105, 42);
 			this->Turno->TabIndex = 7;
-			this->Turno->Text = L"Turn:";
+			this->Turno->Text = L"Yavalath";
 			// 
 			// selectComputer
 			// 
@@ -203,46 +203,55 @@ namespace Yavalath {
 
 				 Ponto p;
 				 
-				 if(this->board->hexagonoClicadoEhValido(e->X, e->Y, &p))
+				 if(this->board->hexagonoClicadoEhValido(e->X, e->Y, &p, minimax->ourColor))
 				 {
 					System::Drawing::SolidBrush^ myBrush;
 				 
-					if (board->GetTurn()==2) //se o turno é das pretas
+					if (minimax->enemyColor==2) //se somos as pretas
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
-						board->NextTurn();
-						this->Turno->Text = L"Turn: White";//Muda de turno
 						this->estadoAtualBoard->Text=gcnew String(board->PrintBoard().c_str());
 						
 					}
-					else // se o turno é das brancas
+					else // se somos as brancas
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
-						board->NextTurn();
-						this->Turno->Text = L"Turn: Black";//muda de turno
 						this->estadoAtualBoard->Text=gcnew String(board->PrintBoard().c_str());
 						
 					}
 				 
-								
-						if(board->horizontal()=='1')
-							this->Turno->Text = L"BRANCAS GANHOOOO";
-						if(board->horizontal()=='2')
-							this->Turno->Text = L"PRETAS GANHOOOO";
-						if(board->diagonal1()=='1')
-							this->Turno->Text = L"BRANCAS GANHOOOO";
-						if(board->diagonal1()=='2')
-							this->Turno->Text = L"PRETAS GANHOOOO";
+							
+						if(board->IsGameOver()=='1')
+							this->Turno->Text = L"BRANCAS GANHO";
+						if(board->IsGameOver()=='2')
+							this->Turno->Text = L"PRETAS GANHO";
+						if(board->IsGameOver()=='0')
+							this->Turno->Text = L"ASDFAs";
 					
 
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 
 					//chama o computador
-					if(minimax->ourColor == 1)
-						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
-					else myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 					
 					this->minimax->Play(board->board); // chama a ia (minimax...)
+					if(minimax->ourColor == 1)
+					{
+						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+						board->board.b[minimax->bestMove]= '1';
+						if(board->IsGameOver()=='1')
+							this->Turno->Text = L"BRANCAS GANHO";
+						if(board->IsGameOver()=='2')
+							this->Turno->Text = L"PRETAS GANHO";
+					}
+					else 
+					{
+							myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
+							board->board.b[minimax->bestMove]= '2';
+							if(board->IsGameOver()=='1')
+							this->Turno->Text = L"BRANCAS GANHO";
+						if(board->IsGameOver()=='2')
+							this->Turno->Text = L"PRETAS GANHO";
+					}
 					Ponto p = board->returnHexPonto(minimax->bestMove);
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 				 }
@@ -262,7 +271,7 @@ namespace Yavalath {
 				 
 				 if(this->whiteone->Checked)
 				 {
-					this->board->SetTurn(1);
+					//this->board->SetTurn(1);
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
 						 this->minimax->ourColor = 1;
@@ -271,6 +280,7 @@ namespace Yavalath {
 						 this->minimax->Play(board->board); // chama a ia (minimax...)
 						 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
 						 Ponto p = board->returnHexPonto(minimax->bestMove);
+						 board->board.b[minimax->bestMove]= '1';
 						 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 
 
@@ -284,7 +294,7 @@ namespace Yavalath {
 				 }
 				 else
 				 {
-					 this->board->SetTurn(2);
+					 //this->board->SetTurn(2);
 					 if(this->selectComputer->SelectedIndex == 1)
 					 {
 						 this->minimax->ourColor = 1;
@@ -301,6 +311,7 @@ namespace Yavalath {
 							 this->minimax->Play(board->board); // chama a ia (minimax...)
 							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 							 Ponto p = board->returnHexPonto(minimax->bestMove);
+							 board->board.b[minimax->bestMove]= '2';
 							 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 						 }
 					 }

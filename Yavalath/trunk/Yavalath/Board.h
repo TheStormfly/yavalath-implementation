@@ -13,17 +13,14 @@ class Board
 		void Initialize();
 		Board(void);
 		~Board(void);
-		int Board::GetTurn();
-		void Board::NextTurn();
-		void Board::SetTurn(int color);
+		
 		bool EmptyPosition(int pos);
 		string Board::PrintBoard();
-		char Board::horizontal();//o para ninguem ganho 1 para brancas 2 para pretas
-		char Board::diagonal1();
-		char Board::AvaliaDiagonal(int posIni, int avaliar);
+		char Board::IsGameOver();//o para ninguem ganho 1 para brancas 2 para pretas
 		bool newgame;
-		bool hexagonoClicadoEhValido(int x, int y, Ponto *p);
+		bool hexagonoClicadoEhValido(int x, int y, Ponto *p, short int ourColor);
 		char Board::AvaliaHorizontal(int posIni, int avaliar);
 		char Board::AvaliaDiagonal1(int posIni, int avaliar);
 		char Board::AvaliaDiagonal2(int posIni, int avaliar);
+		char Board::AvaliaGame(int posIni, int avaliar, unsigned char board[]);
 };
