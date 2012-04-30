@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+
 class Minimax
 {
 	public:
@@ -8,6 +9,6 @@ class Minimax
 		int miniMaxCount;
 		Minimax(void);
 		~Minimax(void);
-		void Negascout(unsigned char board[], short int *bestMove, float alpha, float beta, int depth, short int color);
+		float Negascout(unsigned char board[], short int *bestMove, float alpha, float beta, int depth, short int color);
 };
 
