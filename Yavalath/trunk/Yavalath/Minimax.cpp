@@ -93,6 +93,12 @@ float Minimax::Evaluate(unsigned char board[], int pos,int OurColor)
 
 	//outras heuristicas
 
+	if(pos>=26 && pos<35){
+		//puntuação da linha do meio vale 0.5
+		float pontos=0.5;
+		evaluate=pontos+(pontos*evaluate);
+	}
+
 
 
 	return (evaluate);
