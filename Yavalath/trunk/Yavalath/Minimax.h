@@ -4,12 +4,17 @@
 class Minimax
 {
 	public:
-		AI ai;
-		int maxDepth;
-		int miniMaxCount;
+		short int bestMove;
+		short int ourColor;
+		short int enemyColor;
+		bool newGame;
 		Minimax(void);
 		~Minimax(void);
-		float Negascout(unsigned char board[], short int *bestMove, float alpha, float beta, int depth, short int color);
+		void Play();
+		void JogadasPossiveis(structBoard game, vector<structBoard> *filhos, char ourCor);
+		int maxDepth;
+		int miniMaxCount;
+		double Negamax(structBoard game, double alpha, double beta, int depth, short int color);
 		double Minimax::Evaluate(unsigned char board[], int pos,int OurColor);
 		char Minimax::AvaliaVitoriaDiagonal(int posIni, int avaliar,unsigned char board[]);
 		char Minimax::AvaliaVitoriaDiagonal2(int posIni, int avaliar,unsigned char board[]);

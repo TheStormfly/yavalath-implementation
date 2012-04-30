@@ -88,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Hexagon.cpp" />
     <ClCompile Include="Minimax.cpp" />
@@ -103,7 +102,6 @@
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="AI.h" />
     <ClInclude Include="Hexagon.h" />
     <ClInclude Include="Minimax.h" />
     <ClInclude Include="resource.h" />

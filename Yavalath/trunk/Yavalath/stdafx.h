@@ -12,12 +12,16 @@ using namespace System::Drawing;
 
 using namespace std;
 
+
+typedef struct {
+	unsigned char b[61];
+}structBoard;
+
 #include <iostream>
 #include <math.h>
 #include <vector>
 
 #include "Hexagon.h"
 #include "Board.h"
-#include "AI.h"
 #include "Minimax.h"
 #include "Form1.h"
