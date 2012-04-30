@@ -10,6 +10,7 @@ namespace Yavalath {
 	{
 	private:
 		Board* board;
+		Board* boardCopy;
 		Minimax* minimax;
 	public:
 		Form1(void)
@@ -18,6 +19,7 @@ namespace Yavalath {
 			//
 			//TODO: Add the constructor code here
 			board = new Board();
+			boardCopy = new Board();
 			minimax = new Minimax();
 			this->minimax->newGame = false;
 						
@@ -234,6 +236,15 @@ namespace Yavalath {
 					
 
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+
+					//chama o computador
+					if(minimax->ourColor == 1)
+						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+					else myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
+					
+					this->minimax->Play(board->board); // chama a ia (minimax...)
+					Ponto p = board->returnHexPonto(minimax->bestMove);
+					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 				 }
 			 }
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
@@ -241,8 +252,10 @@ namespace Yavalath {
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
+				 System::Drawing::SolidBrush^ myBrush;
 				 this->board->Initialize();
-				 this->panel1->BackgroundImage = Image::FromFile("fundo.jpg");
+				 this->panel1->Enabled = false;
+				 this->panel1->Enabled = true;
 				 this->minimax->newGame = false;
 				 //recomeça jogo
 
@@ -255,7 +268,12 @@ namespace Yavalath {
 						 this->minimax->ourColor = 1;
 						 this->minimax->enemyColor =2;
 						 this->minimax->newGame = true;
-						 this->minimax->Play(); // chama a ia (minimax...)
+						 this->minimax->Play(board->board); // chama a ia (minimax...)
+						 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+						 Ponto p = board->returnHexPonto(minimax->bestMove);
+						 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+
+
 					 }
 					 else if(this->selectComputer->SelectedIndex == 0)
 					 {
@@ -280,7 +298,10 @@ namespace Yavalath {
 							 this->minimax->ourColor = 2;
 							 this->minimax->enemyColor =1;
 							 this->minimax->newGame = true;
-							 this->minimax->Play(); // chama a ia (minimax...)
+							 this->minimax->Play(board->board); // chama a ia (minimax...)
+							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
+							 Ponto p = board->returnHexPonto(minimax->bestMove);
+							 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 						 }
 					 }
 				 }

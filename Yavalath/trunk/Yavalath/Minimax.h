@@ -10,8 +10,8 @@ class Minimax
 		bool newGame;
 		Minimax(void);
 		~Minimax(void);
-		void Play();
-		void JogadasPossiveis(structBoard game, vector<structBoard> *filhos, char ourCor);
+		void Play(structBoard board);
+		void JogadasPossiveis(structBoard game, vector<short int> *filhos, char ourColor);
 		int maxDepth;
 		int miniMaxCount;
 		double Negamax(structBoard game, double alpha, double beta, int depth, short int color);

@@ -5,9 +5,11 @@ class Board
 	private:
 		int Turn;
 		vector<Hexagon*> hexagonVector;
-		structBoard board;
+		
 
 	public:
+		structBoard board;
+		Ponto Board::returnHexPonto(short int bestMove);
 		void Initialize();
 		Board(void);
 		~Board(void);

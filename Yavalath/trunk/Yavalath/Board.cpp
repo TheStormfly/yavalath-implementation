@@ -104,6 +104,13 @@ void Board::Initialize()
 
 }
 
+Ponto Board::returnHexPonto(short int bestMove)
+{
+
+	return hexagonVector[bestMove]->getCenter();
+	
+}
+
 bool Board::hexagonoClicadoEhValido(int x, int y, Ponto *p)
 {
 	for(int i=0; i<61; i++)
@@ -157,8 +164,6 @@ void Board::SetTurn(int color)
 	if(color==1 || color==2)
 	Turn=color;
 }
-
-
 
 
 
