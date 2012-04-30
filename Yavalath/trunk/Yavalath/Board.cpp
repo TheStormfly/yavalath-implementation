@@ -248,16 +248,16 @@ char Board::AvaliaHorizontal(int posIni, int avaliar)
 
 
 
-char Board::diagonal1() //    "/"
+char Board::diagonal1() //   
 {
 	char resultados[18];
-	
+		//"/"
 		resultados[0]=AvaliaDiagonal(0,1);
 		resultados[1]=AvaliaDiagonal(1,1);
 		resultados[2]=AvaliaDiagonal(2,1);
 		resultados[3]=AvaliaDiagonal(3,1);
 		resultados[4]=AvaliaDiagonal(4,1);
-		resultados[5]=AvaliaDiagonal(1,1);
+		resultados[5]=AvaliaDiagonal(10,1);
 		resultados[6]=AvaliaDiagonal(17,1);
 		resultados[7]=AvaliaDiagonal(25,1);
 		resultados[8]=AvaliaDiagonal(34,1);
@@ -268,13 +268,13 @@ char Board::diagonal1() //    "/"
 		resultados[11]=AvaliaDiagonal(2,2);
 		resultados[12]=AvaliaDiagonal(3,2);
 		resultados[13]=AvaliaDiagonal(4,2);
-		resultados[14]=AvaliaDiagonal(1,2);
+		resultados[14]=AvaliaDiagonal(10,2);
 		resultados[15]=AvaliaDiagonal(17,2);
 		resultados[16]=AvaliaDiagonal(25,2);
 		resultados[17]=AvaliaDiagonal(34,2);
 	
 
-	int resultados2[18];
+	int resultados2[18];//"\"
 	
 		resultados2[0]=AvaliaDiagonal2(4,1);
 		resultados2[1]=AvaliaDiagonal2(3,1);

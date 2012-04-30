@@ -58,10 +58,11 @@ char Enemy(char avaliando)
 }
     
 
-float Minimax::Evaluate(unsigned char board[], int pos,int OurColor)
+double Minimax::Evaluate(unsigned char board[], int pos,int OurColor)
 {
-	float evaluate=0.5;
+	double evaluate=0.5;
 	int winOrLose[3];
+	double pontos=0;
 	
 	//caso ja nao esteja colocado a nova jogada no tabuleiro
 	board[pos]=OurColor;
@@ -91,14 +92,48 @@ float Minimax::Evaluate(unsigned char board[], int pos,int OurColor)
 		return(0);//caso de derrota
 	}
 
-	//outras heuristicas
+	//***********outras heuristicas******************
 
-	if(pos>=26 && pos<35){
-		//puntuação da linha do meio vale 0.5
-		float pontos=0.5;
+
+	//horizontais importantes
+	if(pos>=26 && pos<35)
+	{
+		//puntuação da linha do meio vale mais
+		if(pos>=28 && pos<32)
+		{
+			pontos=0.2;
+			evaluate=pontos+(pontos*evaluate);
+		}
+	    pontos=0.5;
+		evaluate=pontos+(pontos*evaluate);
+	}	
+	
+	//diagonais importantes "/"
+	if(pos==4 || pos==9 || pos==15 || pos==22 || pos==30 || pos==38 || pos==45 || pos==51 || pos==56)
+	{
+		//puntuação mais do meio vale mais
+		if(pos==22 || pos==30 || pos==38)
+		{
+			pontos=0.2;
+			evaluate=pontos+(pontos*evaluate);
+		}
+	    pontos=0.5;
 		evaluate=pontos+(pontos*evaluate);
 	}
 
+	//diagonais importantes "\"
+	if(pos==0 || pos==6 || pos==13 || pos==21 || pos==30 || pos==39 || pos==47 || pos==54 || pos==60)
+	{
+		//puntuação mais do meio vale mais
+		if(pos==21 || pos==30 || pos==39)
+		{
+			pontos=0.2;
+			evaluate=pontos+(pontos*evaluate);
+		}
+	    pontos=0.5;
+		evaluate=pontos+(pontos*evaluate);
+	}
+	
 
 
 	return (evaluate);
