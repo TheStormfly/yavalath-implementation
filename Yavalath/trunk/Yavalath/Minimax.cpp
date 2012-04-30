@@ -17,22 +17,22 @@ Minimax::~Minimax(void)
 // enemy
 double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
 {
-		double a, b, t;
-        this->miniMaxCount++;
+		double t;
+        //this->miniMaxCount++;
 
-		 //if(depth ==0)
-			//return evaluate(board, color);
+		 if(depth ==0)
+			return 1;//evaluate(board, color);
 
-		//a = alpha;
-		//b = beta;
+
 
 		color = 3 - color; // inverte cor para passar
-		vector<structBoard> filhos;
+		vector<short int> filhos;
 		this->JogadasPossiveis(game, &filhos, color);
 
 		for(int i=0; i <(int)filhos.size(); i++) // para cada filho, chama o negamax 
 		{
-            t = - Negamax(filhos[i], -beta, -alpha, depth-1,  -color);
+			game.b[filhos[i]]=color;
+            t = - Negamax(game, -beta, -alpha, depth-1,  color);
             
             if (t >= beta)
                 return t;
@@ -40,7 +40,7 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
             if (t > alpha)
 				alpha = t;
 		}
-	    return a;
+	    return alpha;
 }
 
 
@@ -283,27 +283,21 @@ char Minimax::AvaliaVitoriaDiagonal2(int posIni, int avaliar,unsigned char board
 
 }
 
-//struct jogada {
-//    
-//	int nJogada; 
-//	unsigned char board[61];
-//    int avaliado;
-//    
-//};
 
 
 //aqui faz a chamada do negascout com os primeiros filhos do board
-void Minimax::Play()
+void Minimax::Play(structBoard board)
 {
-	this->newGame = false;
+	//this->newGame = false;
 
-	vector<structBoard> filhos;
-//	this->JogadasPossiveis(game, &filhos, color);
+	vector<short int> filhos;
+	this->JogadasPossiveis(board, &filhos, enemyColor);
 	double g, bestValue = -99999;
 
 	for(short int i=0; i <(short int)filhos.size(); i++) // para cada filho, chama o negascout 
 	{
-		g= -Negamax(filhos[i], -9999, 9999, 3, enemyColor);
+		board.b[filhos[i]]= enemyColor;
+		g= -Negamax(board, -9999, 9999, 3, enemyColor);
 
 		if(g > bestValue)
 		{
@@ -312,6 +306,7 @@ void Minimax::Play()
 		}
 
 	} 
+
 }
 
 //int Avaliacao(jogada)
@@ -322,11 +317,15 @@ void Minimax::Play()
 //}
 
 ////retorna quantas jogadas existe para fazer
-void Minimax::JogadasPossiveis(structBoard game, vector<structBoard> *filhos, char ourColor)
+void Minimax::JogadasPossiveis(structBoard game, vector<short int> *filhos, char ourColor)
 {
-	//for...
-	structBoard filho = game;
-
-	(*filhos).push_back(filho);
+	for(int i=0;i<61;i++)
+	{
+		if(game.b[i]=='0')
+		{
+			(*filhos).push_back(i);
+		}
+	}
+	
 }
 	
