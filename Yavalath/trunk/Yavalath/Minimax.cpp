@@ -42,6 +42,13 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 	    return alpha;
 }
 
+char CorToChar(int cor)
+{
+
+	char buffer[44];
+	_itoa_s (cor,buffer,10);
+	return (buffer[0]);	
+}
 
 double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
 {
@@ -50,11 +57,11 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 	{
 		if(board[i]==C )
 		{
-			evaluate +5;//mais cores no meio melhor
+			evaluate=evaluate +5;;//mais cores no meio melhor
 		}
 		if(i>=26 && i<=34)
 		{
-			evaluate +5;//mais no meio melhor ainda
+			evaluate=evaluate +5;;//mais no meio melhor ainda
 		}
 	}
 
@@ -62,11 +69,11 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 	{
 		if(copia[i]==C )
 		{
-			evaluate +5;//mais cores no meio melhor
+			evaluate=evaluate +5;;//mais cores no meio melhor
 		}
 		if(i>=26 && i<=34)
 		{
-			evaluate +5;//mais no meio melhor ainda
+			evaluate=evaluate +5;;//mais no meio melhor ainda
 		}
 	}
 
@@ -74,11 +81,11 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 	{
 		if(copia1[i]==C )
 		{
-			evaluate +5;//mais cores no meio melhor
+			evaluate=evaluate +5;//mais cores no meio melhor
 		}
 		if(i>=26 && i<=34)
 		{
-			evaluate +5;//mais no meio melhor ainda
+			evaluate=evaluate +5;;//mais no meio melhor ainda
 		}
 	}
 	return evaluate;
@@ -87,8 +94,18 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 
 double PeçaInimigaSozinha(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
 {
-	//for(int i=18;i<=42;i++)
-	//if(
+	
+	char OurC, OurE;
+	OurC=CorToChar(C);
+	OurE=CorToChar(3-C);
+	double evaluate=0;
+	
+	for(int i=1;i<61;i++)
+	{
+		if(board[i]==OurE && (board[i+1]=='0' || board[i-1]=='0'))
+		evaluate=evaluate+20; // 
+	}
+	if(true)
 	return (2);
 }
 
@@ -96,17 +113,15 @@ double Minimax::Evaluate(unsigned char board[],int OurColor)
 {
 	double evaluate=0;
 			
-	char buffer[10];
 	char OurC;
 	char OurE;
 	char vazio='0';
 	
 	//transforma int to char
-	_itoa_s (OurColor,buffer,10);
-	OurC=buffer[0];	
+	 OurC=CorToChar(OurColor);
 	//ve qm eh nosso oponente
-	_itoa_s (3-OurColor,buffer,10);
-	OurE=buffer[0];
+	 OurE=CorToChar(3-OurColor);
+	
 
 	//copia para avaliar diagonal '/'
 	unsigned char copia[61];	
@@ -140,8 +155,8 @@ double Minimax::Evaluate(unsigned char board[],int OurColor)
 	
 	evaluate=evaluate+AreaValiosa(board,copia,copia1,OurC);
 	
-	if(board[31]='2');
-	evaluate=99999;
+	//if(board[31]='2');
+	//evaluate=99999;
 	return(evaluate);
 }
 
