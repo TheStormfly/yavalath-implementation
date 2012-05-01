@@ -2,6 +2,7 @@
 #include "Minimax.h"
 
 
+
 Minimax::Minimax(void)
 {
 	this->newGame = false;
@@ -21,33 +22,38 @@ char CorToChar(int cor)
 }
 // beta é valor maior, e alpha menor
 // enemy
-double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
+double Minimax::Negamax(structBoardteste game, double alpha, double beta, int depth, short int color)
 {
-		double t;
+			
 		char OurC=CorToChar(color);
-		char OurE=CorToChar(3-color);
-		structBoard b;
-		for(int i=0;i<61;i++)
+		
+			vector<short int> child;
+		this->JogadasPossiveis(game, &child,OurC);
+
+		char OurE=CorToChar(3-color);   // COLOQUEI UM PONTO DE DEBUG AQUI
+		double t;
+		structBoardteste b;
+		for(int i=0;i<5;i++)
 		b.b[i]=game.b[i];
 
 		 if(depth == 0){
-			 double j=Evaluate(game.b,color);
-			return (j);//evaluate(board, color);
+			 //return 1;//(rand() % 30 + 1985);
+			 double j=Evaluate(game.b,color);     // COLOQUEI UM PONTO DE DEBUG AQUI
+			 return (j);//evaluate(board, color);
 		 }
 
 
 		//color = 3 - color; // inverte cor para passar
-		vector<short int> filhos;
-		this->JogadasPossiveis(game, &filhos,OurC);
 
-		for(int i=0; i <(int)filhos.size(); i++) // para cada filho, chama o negamax 
+
+		for(int i=0; i <(int)child.size(); i++) // para cada filho, chama o negamax 
 		{
-			b.b[filhos[i]]=OurC;
+			b.b[child[i]]=OurC;
             t = - Negamax(b, -beta, -alpha, depth-1,(3-color));
-            b.b[filhos[i]]='0';
+            b.b[child[i]]='0';
 
-            if (t >= beta)
-                return t;
+            //if (t >= beta)
+            //    return t;
 
             if (t > alpha)
 				alpha = t;
@@ -355,15 +361,26 @@ void Minimax::Play(structBoard board1)
 	for(int i=0;i<61;i++)
     b.b[i]=board1.b[i];
 
+		// modificacoes para teste====
+
+
+
+	structBoardteste teste;
+	for(int i=0;i<5;i++)
+    teste.b[i]='0';
+
+	teste.b[0] = '1';
+	//========================
+
 	vector<short int> filhos;
-	this->JogadasPossiveis(b, &filhos, OurC);
+	this->JogadasPossiveis(teste, &filhos, OurC);
 	double g, bestValue = -99999;
 
 	for(short int i=0; i <(short int)filhos.size(); i++) // para cada filho, chama o negascout 
 	{
-		b.b[filhos[i]]= OurC;
-		g= -Negamax(b, -9999, 9999, 2, enemyColor);
-		b.b[filhos[i]]= '0';
+		teste.b[filhos[i]]= OurC;
+		g= -Negamax(teste, -9999, 9999, 2, enemyColor);
+		teste.b[filhos[i]]= '0';             // COLOQUEI UM PONTO DE DEBUG AQUI
 		if(g > bestValue)
 		{
 			bestValue = g;
@@ -376,9 +393,9 @@ void Minimax::Play(structBoard board1)
 
 
 ////retorna quantas jogadas existe para fazer
-void Minimax::JogadasPossiveis(structBoard game, vector<short int> *filhos, char ourColor)
+void Minimax::JogadasPossiveis(structBoardteste game, vector<short int> *filhos, char ourColor)
 {
-	for(int i=0;i<61;i++)
+	for(int i=0;i<5;i++)
 	{
 		if(game.b[i]=='0')
 		{
