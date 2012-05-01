@@ -11,9 +11,7 @@ using namespace System::Windows::Forms;
 using namespace System::Drawing;
 
 using namespace std;
-	typedef struct {
-	unsigned char b[5];
-}structBoardteste;
+
 
 typedef struct {
 	unsigned char b[61];
