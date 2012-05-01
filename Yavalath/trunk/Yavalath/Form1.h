@@ -235,6 +235,7 @@ namespace Yavalath {
 					//chama o computador
 					
 					this->minimax->Play(board->board); // chama a ia (minimax...)
+
 					if(minimax->ourColor == 1)
 					{
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
