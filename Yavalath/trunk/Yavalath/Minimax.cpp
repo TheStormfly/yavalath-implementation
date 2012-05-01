@@ -26,9 +26,14 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 		double t;
 		char OurC=CorToChar(color);
 		char OurE=CorToChar(3-color);
-		 if(depth == 0)
-			return (Evaluate(game.b,color));//evaluate(board, color);
+		structBoard b;
+		for(int i=0;i<61;i++)
+		b.b[i]=game.b[i];
 
+		 if(depth == 0){
+			 double j=Evaluate(game.b,color);
+			return (j);//evaluate(board, color);
+		 }
 
 
 		//color = 3 - color; // inverte cor para passar
@@ -37,9 +42,10 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 
 		for(int i=0; i <(int)filhos.size(); i++) // para cada filho, chama o negamax 
 		{
-			game.b[filhos[i]]=OurC;
-            t = - Negamax(game, -beta, -alpha, depth-1,(3-color));
-            
+			b.b[filhos[i]]=OurC;
+            t = - Negamax(b, -beta, -alpha, depth-1,(3-color));
+            b.b[filhos[i]]='0';
+
             if (t >= beta)
                 return t;
 
