@@ -12,7 +12,13 @@ Minimax::~Minimax(void)
 {
 }
 
+char CorToChar(int cor)
+{
 
+	char buffer[44];
+	_itoa_s (cor,buffer,10);
+	return (buffer[0]);	
+}
 // beta é valor maior, e alpha menor
 // enemy
 double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
@@ -42,13 +48,7 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 	    return alpha;
 }
 
-char CorToChar(int cor)
-{
 
-	char buffer[44];
-	_itoa_s (cor,buffer,10);
-	return (buffer[0]);	
-}
 
 double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
 {
