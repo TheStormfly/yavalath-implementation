@@ -17,6 +17,7 @@ typedef struct {
 	unsigned char b[61];
 }structBoard;
 
+#include <time.h>
 #include <iostream>
 #include <math.h>
 #include <vector>
