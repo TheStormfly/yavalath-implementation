@@ -226,8 +226,7 @@ namespace Yavalath {
 							this->Turno->Text = L"BRANCAS GANHO";
 						if(board->IsGameOver(board->board.b)=='2')
 							this->Turno->Text = L"PRETAS GANHO";
-						if(board->IsGameOver(board->board.b)=='0')
-							this->Turno->Text = L"ASDFAs";
+						
 					
 
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
