@@ -85,10 +85,11 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 
 }
 
-double PeçaInimigaSozinha(unsigned char board[], char C) 
+double PeçaInimigaSozinha(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
 {
-	for()
-	if(
+	//for(int i=18;i<=42;i++)
+	//if(
+	return (2);
 }
 
 double Minimax::Evaluate(unsigned char board[],int OurColor)
