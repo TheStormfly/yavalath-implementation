@@ -50,12 +50,12 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 
 
 
-double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
+double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char copia1[], char OurC,char OurE)
 {
 	double evaluate=0;
 	for(int i=18;i<=42;i++)
 	{
-		if(board[i]==C )
+		if(board[i]==OurC )
 		{
 			evaluate=evaluate +5;;//mais cores no meio melhor
 		}
@@ -67,7 +67,7 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 
 	for(int i=18;i<=42;i++)
 	{
-		if(copia[i]==C )
+		if(copia[i]==OurC )
 		{
 			evaluate=evaluate +5;;//mais cores no meio melhor
 		}
@@ -79,7 +79,7 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 
 	for(int i=18;i<=42;i++)
 	{
-		if(copia1[i]==C )
+		if(copia1[i]==OurC )
 		{
 			evaluate=evaluate +5;//mais cores no meio melhor
 		}
@@ -92,21 +92,195 @@ double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char cop
 
 }
 
-double PeçaInimigaSozinha(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
+double JogadaAQuatro(unsigned char board[],unsigned char copia[],unsigned char copia1[], char OurC,char OurE)
+{
+	double evaluate=0;
+
+	///****horizontal
+	for(int i=0;i<2;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=5;i<8;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=11;i<15;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=18;i<23;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=26;i<=32;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=35;i<=40;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=43;i<=47;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=50;i<=53;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=56;i<=58;i++)
+	{
+		if(board[i]==OurC && board[i+1]=='0' && board[i+2]=='0' && board[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	///****diagonal1
+	for(int i=0;i<2;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=5;i<8;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=11;i<15;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=18;i<23;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=26;i<=32;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=35;i<=40;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=43;i<=47;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=50;i<=53;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=56;i<=58;i++)
+	{
+		if(copia[i]==OurC && copia[i+1]=='0' && copia[i+2]=='0' && copia[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	///****diagonal2
+	for(int i=0;i<2;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=5;i<8;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=11;i<15;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=18;i<23;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=26;i<=32;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=35;i<=40;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=43;i<=47;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=50;i<=53;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	for(int i=56;i<=58;i++)
+	{
+		if(copia1[i]==OurC && copia1[i+1]=='0' && copia1[i+2]=='0' && copia1[i+3]==OurC)
+		evaluate=evaluate+50;
+	}
+	return(evaluate);
+
+}
+
+
+
+double PeçaInimigaSozinha(unsigned char board[],unsigned char copia[],unsigned char copia1[], char OurC,char OurE)
 {
 	
-	char OurC, OurE;
-	OurC=CorToChar(C);
-	OurE=CorToChar(3-C);
-	double evaluate=0;
 	
-	for(int i=1;i<61;i++)
+	double evaluate=0;
+	bool resolvido[59];//caso ele veja q em outra diagonal isso ja foi resolvido ele desiste de colocar ali
+	
+	for(int i=0;i<59;i++)
 	{
-		if(board[i]==OurE && (board[i+1]=='0' || board[i-1]=='0'))
-		evaluate=evaluate+20; // 
+		resolvido[i]=false;
 	}
-	if(true)
-	return (2);
+		
+	for(int i=2;i<59;i=i++)
+	{
+		if(board[i]==OurE && board[i+1]==OurE && ((board[i-1]==OurC) ^ (board[i-2]==OurC)))
+		{
+			evaluate=evaluate+20;
+			resolvido[i]=true;
+		}
+	}
+	for(int i=2;i<59;i++)
+	{
+		if(copia[i]==OurE && copia[i+1]==OurE && ((board[i-1]==OurC) ^ (board[i-2]==OurC)))
+		{
+			if(resolvido[i]==false)
+			{
+				evaluate=evaluate+20; //
+				resolvido[i]=true;
+			}
+		}
+	}
+	for(int i=2;i<59;i++)
+	{
+		if(copia[i]==OurE && copia[i+1]==OurE && ((board[i-1]==OurC) ^ (board[i-2]==OurC)))
+		{
+			if(resolvido[i]==false)
+			evaluate=evaluate+20; //
+		}
+	}
+	
+	return (evaluate);
 }
 
 double Minimax::Evaluate(unsigned char board[],int OurColor)
@@ -153,8 +327,9 @@ double Minimax::Evaluate(unsigned char board[],int OurColor)
 	else if (empDoBoard->IsGameOver(board)==OurE)
 		return -9999999999999;
 	
-	evaluate=evaluate+AreaValiosa(board,copia,copia1,OurC);
-	
+	evaluate=evaluate+AreaValiosa(board,copia,copia1,OurC,OurE);
+	evaluate=evaluate+PeçaInimigaSozinha(board,copia,copia1,OurC,OurE);
+	evaluate=evaluate+JogadaAQuatro(board,copia,copia1,OurC,OurE);
 	//if(board[31]='2');
 	//evaluate=99999;
 	return(evaluate);
