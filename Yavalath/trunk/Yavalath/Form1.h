@@ -192,6 +192,7 @@ namespace Yavalath {
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
+			
 		}
 #pragma endregion
 		
