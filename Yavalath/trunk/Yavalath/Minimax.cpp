@@ -23,9 +23,8 @@ char CorToChar(int cor)
 // enemy
 double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
 {
-		double t;
+		double max = -99999;
 		char OurC=CorToChar(color);
-		char OurE=CorToChar(3-color);
 		structBoard b;
 		for(int i=0;i<61;i++)
 		b.b[i]=game.b[i];
@@ -37,22 +36,23 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 
 
 		//color = 3 - color; // inverte cor para passar
-		vector<short int> filhos;
-		this->JogadasPossiveis(game, &filhos,OurC);
+		vector<short int> child;
+		this->JogadasPossiveis(game, &child,OurC);
 
-		for(int i=0; i <(int)filhos.size(); i++) // para cada filho, chama o negamax 
+		for(int i=0; i <(int)child.size(); i++) // para cada filho, chama o negamax 
 		{
-			b.b[filhos[i]]=OurC;
-            t = - Negamax(b, -beta, -alpha, depth-1,(3-color));
-            b.b[filhos[i]]='0';
+			b.b[child[i]]=OurC;
+           double x = - Negamax(b, -beta, -alpha, depth-1,(3-color));
+            b.b[child[i]]='0';
 
-            if (t >= beta)
-                return t;
-
-            if (t > alpha)
-				alpha = t;
+			if (x>max) 
+				max = x;
+			if (x>alpha) 
+				alpha = x;
+			if (alpha>=beta) 
+				return alpha;
 		}
-	    return alpha;
+		return max;
 }
 
 
