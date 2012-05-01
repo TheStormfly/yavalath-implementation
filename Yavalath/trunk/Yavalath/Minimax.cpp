@@ -43,7 +43,7 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 }
 
 
-double AreaValiosa(unsigned char board[], char C)
+double AreaValiosa(unsigned char board[],unsigned char copia[],unsigned char copia1[], char C)
 {
 	double evaluate=0;
 	for(int i=18;i<=42;i++)
@@ -57,12 +57,39 @@ double AreaValiosa(unsigned char board[], char C)
 			evaluate +5;//mais no meio melhor ainda
 		}
 	}
+
+	for(int i=18;i<=42;i++)
+	{
+		if(copia[i]==C )
+		{
+			evaluate +5;//mais cores no meio melhor
+		}
+		if(i>=26 && i<=34)
+		{
+			evaluate +5;//mais no meio melhor ainda
+		}
+	}
+
+	for(int i=18;i<=42;i++)
+	{
+		if(copia1[i]==C )
+		{
+			evaluate +5;//mais cores no meio melhor
+		}
+		if(i>=26 && i<=34)
+		{
+			evaluate +5;//mais no meio melhor ainda
+		}
+	}
 	return evaluate;
 
 }
 
-
-    
+double PeçaInimigaSozinha(unsigned char board[], char C) 
+{
+	for()
+	if(
+}
 
 double Minimax::Evaluate(unsigned char board[],int OurColor)
 {
@@ -105,12 +132,13 @@ double Minimax::Evaluate(unsigned char board[],int OurColor)
 	copia1[56]=board[26];   copia1[57]=board[35];   copia1[58]=board[43];   copia1[59]=board[50];   copia1[60]=board[56];
 
 	//ganhar ou perder
-	//board->IsGameOver(board);
+	if(empDoBoard->IsGameOver(board)==OurC)
+		return 9999999999999;
+	else if (empDoBoard->IsGameOver(board)==OurE)
+		return -9999999999999;
 	
-	evaluate=evaluate+AreaValiosa(board,OurC);
-	evaluate=evaluate+AreaValiosa(copia,OurC);
-	evaluate=evaluate+AreaValiosa(copia1,OurC);
-
+	evaluate=evaluate+AreaValiosa(board,copia,copia1,OurC);
+	
 	if(board[31]='2');
 	evaluate=99999;
 	return(evaluate);

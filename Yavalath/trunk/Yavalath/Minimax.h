@@ -4,7 +4,7 @@
 class Minimax
 {
 	public:
-		Board board;
+		Board *empDoBoard;
 
 		short int bestMove;
 		short int ourColor;
