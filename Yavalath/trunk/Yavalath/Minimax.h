@@ -5,7 +5,7 @@ class Minimax
 {
 	public:
 		Board *empDoBoard;
-		
+		clock_t endTime;
 		short int bestMove;
 		short int ourColor;
 		short int enemyColor;

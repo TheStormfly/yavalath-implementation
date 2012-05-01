@@ -29,10 +29,11 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 		for(int i=0;i<61;i++)
 		b.b[i]=game.b[i];
 
-		 if(depth == 0){
-			 double j=Evaluate(game.b,color);
-			return (j);//evaluate(board, color);
-		 }
+		if(depth == 0)
+		{
+			double j=Evaluate(game.b,color);
+			return (j);
+		}
 
 
 		//color = 3 - color; // inverte cor para passar
@@ -41,6 +42,9 @@ double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, 
 
 		for(int i=0; i <(int)child.size(); i++) // para cada filho, chama o negamax 
 		{
+			if(clock() >= this->endTime)
+				break;
+
 			b.b[child[i]]=OurC;
            double x = - Negamax(b, -beta, -alpha, depth-1,(3-color));
             b.b[child[i]]='0';
@@ -347,6 +351,7 @@ double Minimax::Evaluate(unsigned char board[],int OurColor)
 //aqui faz a chamada do negascout com os primeiros filhos do board
 void Minimax::Play(structBoard board1)
 {
+	this->endTime = clock() + (5 * CLOCKS_PER_SEC);
 
 	char OurC=CorToChar(ourColor);
 	char OurE=CorToChar(enemyColor);
@@ -362,13 +367,16 @@ void Minimax::Play(structBoard board1)
 	for(short int i=0; i <(short int)filhos.size(); i++) // para cada filho, chama o negascout 
 	{
 		b.b[filhos[i]]= OurC;
-		g= -Negamax(b, -9999, 9999, 2, enemyColor);
+		g= -Negamax(b, -9999, 9999, 1, enemyColor);
 		b.b[filhos[i]]= '0';
 		if(g > bestValue)
 		{
 			bestValue = g;
 			this->bestMove = filhos[i];
 		}
+		
+		if(clock() >= this->endTime)
+			return;
 
 	} 
 
