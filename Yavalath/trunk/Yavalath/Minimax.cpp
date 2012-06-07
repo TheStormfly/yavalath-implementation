@@ -19,45 +19,7 @@ char CorToChar(int cor)
 	_itoa_s (cor,buffer,10);
 	return (buffer[0]);	
 }
-// beta é valor maior, e alpha menor
-// enemy
-double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
-{
-		double max = -99999;
-		char OurC=CorToChar(color);
-		structBoard b;
-		for(int i=0;i<61;i++)
-		b.b[i]=game.b[i];
 
-		if(depth == 0)
-		{
-			double j=Evaluate(game.b,color);
-			return (j);
-		}
-
-
-		//color = 3 - color; // inverte cor para passar
-		vector<short int> child;
-		this->JogadasPossiveis(game, &child,OurC);
-
-		for(int i=0; i <(int)child.size(); i++) // para cada filho, chama o negamax 
-		{
-			if(clock() >= this->endTime)
-				break;
-
-			b.b[child[i]]=OurC;
-           double x = - Negamax(b, -beta, -alpha, depth-1,(3-color));
-            b.b[child[i]]='0';
-
-			if (x>max) 
-				max = x;
-			if (x>alpha) 
-				alpha = x;
-			if (alpha>=beta) 
-				return alpha;
-		}
-		return max;
-}
 
 
 
@@ -346,7 +308,45 @@ double Minimax::Evaluate(unsigned char board[],int OurColor)
 	return(evaluate);
 }
 
+// beta é valor maior, e alpha menor
+// enemy
+double Minimax::Negamax(structBoard game, double alpha, double beta, int depth, short int color)
+{
+		double max = -99999;
+		char OurC=CorToChar(color);
+		structBoard b;
+		for(int i=0;i<61;i++)
+		b.b[i]=game.b[i];
 
+		if(depth == 0)
+		{
+			double j=Evaluate(game.b,color);
+			return (j);
+		}
+
+
+		//color = 3 - color; // inverte cor para passar
+		vector<short int> child;
+		this->JogadasPossiveis(game, &child,OurC);
+
+		for(int i=0; i <(int)child.size(); i++) // para cada filho, chama o negamax 
+		{
+			if(clock() >= this->endTime)
+				break;
+
+			b.b[child[i]]=OurC;
+           double x = - Negamax(b, -beta, -alpha, depth-1,(3-color));
+            b.b[child[i]]='0';
+
+			if (x>max) 
+				max = x;
+			if (x>alpha) 
+				alpha = x;
+			if (alpha>=beta) 
+				return alpha;
+		}
+		return max;
+}
 
 //aqui faz a chamada do negascout com os primeiros filhos do board
 void Minimax::Play(structBoard board1)
