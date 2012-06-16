@@ -12,8 +12,10 @@ namespace Yavalath {
 		Board* board;
 		Board* boardCopy;
 		Minimax* minimax;
+
 	public:
 		Form1(void)
+
 		{
 			InitializeComponent();
 			//
@@ -22,6 +24,7 @@ namespace Yavalath {
 			boardCopy = new Board();
 			minimax = new Minimax();
 			this->minimax->newGame = false;
+
 						
 		}
 
@@ -47,7 +50,7 @@ namespace Yavalath {
 
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::Label^  estadoAtualBoard;
+
 
 
 	protected: 
@@ -69,7 +72,6 @@ namespace Yavalath {
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->estadoAtualBoard = (gcnew System::Windows::Forms::Label());
 			this->newgame = (gcnew System::Windows::Forms::Button());
 			this->whiteone = (gcnew System::Windows::Forms::RadioButton());
 			this->blackone = (gcnew System::Windows::Forms::RadioButton());
@@ -77,27 +79,16 @@ namespace Yavalath {
 			this->selectComputer = (gcnew System::Windows::Forms::ComboBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"panel1.BackgroundImage")));
-			this->panel1->Controls->Add(this->estadoAtualBoard);
 			this->panel1->Location = System::Drawing::Point(-1, 0);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(568, 504);
 			this->panel1->TabIndex = 0;
 			this->panel1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::panel1_MouseClick);
-			// 
-			// estadoAtualBoard
-			// 
-			this->estadoAtualBoard->AutoSize = true;
-			this->estadoAtualBoard->Location = System::Drawing::Point(3, 0);
-			this->estadoAtualBoard->Name = L"estadoAtualBoard";
-			this->estadoAtualBoard->Size = System::Drawing::Size(89, 13);
-			this->estadoAtualBoard->TabIndex = 0;
-			this->estadoAtualBoard->Text = L"ESTADO ATUAL";
 			// 
 			// newgame
 			// 
@@ -133,11 +124,11 @@ namespace Yavalath {
 			// Turno
 			// 
 			this->Turno->AutoSize = true;
-			this->Turno->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.0F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->Turno->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
 			this->Turno->Location = System::Drawing::Point(573, 135);
-			this->Turno->Name = L"name";
-			this->Turno->Size = System::Drawing::Size(105, 42);
+			this->Turno->Name = L"Turno";
+			this->Turno->Size = System::Drawing::Size(63, 17);
 			this->Turno->TabIndex = 7;
 			this->Turno->Text = L"Yavalath";
 			// 
@@ -187,12 +178,9 @@ namespace Yavalath {
 			this->Name = L"Form1";
 			this->Text = L"Yavalath";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
-			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
-			
 		}
 #pragma endregion
 		
@@ -203,29 +191,32 @@ namespace Yavalath {
 					 return;
 
 				 Ponto p;
-				 
+				 System::Drawing::SolidBrush^ myBrush2;
+				 myBrush2 = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Gray);
+			
 				 if(this->board->hexagonoClicadoEhValido(e->X, e->Y, &p, minimax->ourColor))
 				 {
 					System::Drawing::SolidBrush^ myBrush;
+					
 				 
 					if (minimax->enemyColor==2) //se somos as pretas
 					{
+						
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
-						this->estadoAtualBoard->Text=gcnew String(board->PrintBoard().c_str());
 						
 					}
 					else // se somos as brancas
 					{
+					
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
-						this->estadoAtualBoard->Text=gcnew String(board->PrintBoard().c_str());
 						
 					}
 				 
 							
 						if(board->IsGameOver(board->board.b)=='1')
-							this->Turno->Text = L"BRANCAS GANHO";
+							this->Turno->Text = L"BRANCAS GANHARAM";
 						if(board->IsGameOver(board->board.b)=='2')
-							this->Turno->Text = L"PRETAS GANHO";
+							this->Turno->Text = L"PRETAS GANHARAM";
 						
 					
 
@@ -240,21 +231,29 @@ namespace Yavalath {
 						myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
 						board->board.b[minimax->bestMove]= '1';
 						if(board->IsGameOver(board->board.b)=='1')
-							this->Turno->Text = L"BRANCAS GANHO";
+							this->Turno->Text = L"BRANCAS GANHARAM";
 						if(board->IsGameOver(board->board.b)=='2')
-							this->Turno->Text = L"PRETAS GANHO";
+							this->Turno->Text = L"PRETAS GANHARAM";
+						
 					}
 					else 
 					{
 							myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 							board->board.b[minimax->bestMove]= '2';
 							if(board->IsGameOver(board->board.b)=='1')
-							this->Turno->Text = L"BRANCAS GANHO";
+							this->Turno->Text = L"BRANCAS GANHARAM";
 							if(board->IsGameOver(board->board.b)=='2')
-							this->Turno->Text = L"PRETAS GANHO";
+							this->Turno->Text = L"PRETAS GANHARAM";
+							
 					}
-					Ponto p = board->returnHexPonto(minimax->bestMove);
+					
+					p = board->returnHexPonto(minimax->bestMove);
+					
+					//cria para o novo
+					this->panel1->CreateGraphics()->FillEllipse(myBrush2, p.X - 20, p.Y - 20, 42, 42);
+					_sleep(700);
 					this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+					
 				 }
 			 }
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
@@ -268,7 +267,8 @@ namespace Yavalath {
 				 this->panel1->Enabled = true;
 				 this->minimax->newGame = false;
 				 //recomeça jogo
-
+				 System::Drawing::SolidBrush^ myBrush2;
+				 Ponto p;
 				 
 				 if(this->whiteone->Checked)
 				 {
@@ -280,15 +280,19 @@ namespace Yavalath {
 						 this->minimax->newGame = true;
 						 this->minimax->Play(board->board); // chama a ia (minimax...)
 						 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
-						 Ponto p = board->returnHexPonto(minimax->bestMove);
-						 board->board.b[minimax->bestMove]= '1';
-						 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+						 			 
 						 
-						 if(board->IsGameOver(board->board.b)=='1')
-						 this->Turno->Text = L"BRANCAS GANHO";
-						 if(board->IsGameOver(board->board.b)=='2')
-						 this->Turno->Text = L"PRETAS GANHO";
+						 
+						 p = board->returnHexPonto(minimax->bestMove);
+						 board->board.b[minimax->bestMove]= '1';					
+						 this->panel1->CreateGraphics()->FillEllipse(myBrush2, p.X - 20, p.Y - 20, 42, 42);
 
+												 
+						 if(board->IsGameOver(board->board.b)=='1')
+						 this->Turno->Text = L"BRANCAS GANHARAM";
+						 if(board->IsGameOver(board->board.b)=='2')
+						 this->Turno->Text = L"PRETAS GANHARAM";
+					
 					 }
 					 else if(this->selectComputer->SelectedIndex == 0)
 					 {
@@ -314,15 +318,20 @@ namespace Yavalath {
 							 this->minimax->enemyColor =1;
 							 this->minimax->newGame = true;
 							 this->minimax->Play(board->board); // chama a ia (minimax...)
-							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
-							 Ponto p = board->returnHexPonto(minimax->bestMove);
-							 board->board.b[minimax->bestMove]= '2';
+							 
+							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+							  myBrush2 = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Gray);
+							 p = board->returnHexPonto(minimax->bestMove);
+							 board->board.b[minimax->bestMove]= '2';							
 							 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
+							
 							 
 							 if(board->IsGameOver(board->board.b)=='1')
-							 this->Turno->Text = L"BRANCAS GANHO";
+							 this->Turno->Text = L"BRANCAS GANHARAM";
 							 if(board->IsGameOver(board->board.b)=='2')
-							 this->Turno->Text = L"PRETAS GANHO";
+							 this->Turno->Text = L"PRETAS GANHARAM";
+
+							
 						 }
 					 }
 				 }

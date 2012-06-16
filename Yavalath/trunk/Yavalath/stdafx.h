@@ -22,6 +22,7 @@ typedef struct {
 #include <math.h>
 #include <vector>
 
+
 #include "Hexagon.h"
 #include "Board.h"
 #include "Minimax.h"
