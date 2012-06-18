@@ -319,7 +319,7 @@ namespace Yavalath {
 							 this->minimax->newGame = true;
 							 this->minimax->Play(board->board); // chama a ia (minimax...)
 							 
-							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
+							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Black);
 						
 							 Ponto p = board->returnHexPonto(minimax->bestMove);
 							 board->board.b[minimax->bestMove]= '2';							
