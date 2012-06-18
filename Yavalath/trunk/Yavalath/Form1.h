@@ -102,23 +102,23 @@ namespace Yavalath {
 			// 
 			// whiteone
 			// 
-			this->whiteone->Location = System::Drawing::Point(611, 350);
+			this->whiteone->Location = System::Drawing::Point(627, 350);
 			this->whiteone->Name = L"whiteone";
 			this->whiteone->Size = System::Drawing::Size(85, 17);
 			this->whiteone->TabIndex = 0;
 			this->whiteone->TabStop = true;
-			this->whiteone->Text = L"White";
+			this->whiteone->Text = L"Brancas";
 			this->whiteone->UseVisualStyleBackColor = true;
 			this->whiteone->CheckedChanged += gcnew System::EventHandler(this, &Form1::whiteone_CheckedChanged);
 			// 
 			// blackone
 			// 
-			this->blackone->Location = System::Drawing::Point(675, 350);
+			this->blackone->Location = System::Drawing::Point(687, 350);
 			this->blackone->Name = L"blackone";
 			this->blackone->Size = System::Drawing::Size(85, 17);
 			this->blackone->TabIndex = 2;
 			this->blackone->TabStop = true;
-			this->blackone->Text = L"Black";
+			this->blackone->Text = L"Pretas";
 			this->blackone->UseVisualStyleBackColor = true;
 			// 
 			// Turno
@@ -128,15 +128,15 @@ namespace Yavalath {
 				static_cast<System::Byte>(0)));
 			this->Turno->Location = System::Drawing::Point(573, 135);
 			this->Turno->Name = L"Turno";
-			this->Turno->Size = System::Drawing::Size(63, 17);
+			this->Turno->Size = System::Drawing::Size(65, 17);
 			this->Turno->TabIndex = 7;
-			this->Turno->Text = L"Yavalath";
+			this->Turno->Text = L"Tetralath";
 			// 
 			// selectComputer
 			// 
 			this->selectComputer->AutoCompleteCustomSource->AddRange(gcnew cli::array< System::String^  >(2) {L"White", L"Black"});
 			this->selectComputer->FormattingEnabled = true;
-			this->selectComputer->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"Black", L"White"});
+			this->selectComputer->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"Pretas", L"Brancas"});
 			this->selectComputer->Location = System::Drawing::Point(634, 391);
 			this->selectComputer->Name = L"selectComputer";
 			this->selectComputer->Size = System::Drawing::Size(103, 21);
@@ -147,18 +147,18 @@ namespace Yavalath {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(573, 350);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(32, 13);
+			this->label1->Size = System::Drawing::Size(52, 13);
 			this->label1->TabIndex = 9;
-			this->label1->Text = L"Start:";
+			this->label1->Text = L"Começar:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(573, 394);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(55, 13);
+			this->label2->Size = System::Drawing::Size(67, 13);
 			this->label2->TabIndex = 10;
-			this->label2->Text = L"Computer:";
+			this->label2->Text = L"Computador:";
 			// 
 			// Form1
 			// 
@@ -176,7 +176,7 @@ namespace Yavalath {
 			this->MaximumSize = System::Drawing::Size(800, 533);
 			this->MinimumSize = System::Drawing::Size(800, 533);
 			this->Name = L"Form1";
-			this->Text = L"Yavalath";
+			this->Text = L"Tetralath";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
