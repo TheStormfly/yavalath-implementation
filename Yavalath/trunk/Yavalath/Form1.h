@@ -267,8 +267,8 @@ namespace Yavalath {
 				 this->panel1->Enabled = true;
 				 this->minimax->newGame = false;
 				 //recomeça jogo
-				 System::Drawing::SolidBrush^ myBrush2;
-				 Ponto p;
+				// System::Drawing::SolidBrush^ myBrush2;
+				// Ponto p;
 				 
 				 if(this->whiteone->Checked)
 				 {
@@ -283,9 +283,9 @@ namespace Yavalath {
 						 			 
 						 
 						 
-						 p = board->returnHexPonto(minimax->bestMove);
+						 Ponto p = board->returnHexPonto(minimax->bestMove);
 						 board->board.b[minimax->bestMove]= '1';					
-						 this->panel1->CreateGraphics()->FillEllipse(myBrush2, p.X - 20, p.Y - 20, 42, 42);
+						 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 
 												 
 						 if(board->IsGameOver(board->board.b)=='1')
@@ -320,8 +320,8 @@ namespace Yavalath {
 							 this->minimax->Play(board->board); // chama a ia (minimax...)
 							 
 							 myBrush = gcnew System::Drawing::SolidBrush(System::Drawing::Color::White);
-							  myBrush2 = gcnew System::Drawing::SolidBrush(System::Drawing::Color::Gray);
-							 p = board->returnHexPonto(minimax->bestMove);
+						
+							 Ponto p = board->returnHexPonto(minimax->bestMove);
 							 board->board.b[minimax->bestMove]= '2';							
 							 this->panel1->CreateGraphics()->FillEllipse(myBrush, p.X - 20, p.Y - 20, 42, 42);
 							
